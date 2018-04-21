@@ -44,6 +44,8 @@ public class CardHolder : MonoBehaviour {
     private float rep = 3;
 	// Update is called once per frame
 	void Update () {
+        phantomHand.transform.position = this.transform.position;
+        phantomHand.transform.rotation = this.transform.rotation;
         //Quaternion temp = this.transform.rotation;
         //this.transform.rotation = new Quaternion();
         if (Time.time > rep)

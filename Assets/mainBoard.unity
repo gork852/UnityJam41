@@ -371,6 +371,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1017127030640234, guid: 6173d4f78b4411044b88d9fed1a5f817,
         type: 2}
+    - target: {fileID: 114388023495455666, guid: 9838e313c2c4cc7498f62ed545d84bf7,
+        type: 2}
+      propertyPath: hideHandOffset.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114388023495455666, guid: 9838e313c2c4cc7498f62ed545d84bf7,
+        type: 2}
+      propertyPath: hideHandOffset.y
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9838e313c2c4cc7498f62ed545d84bf7, type: 2}
   m_IsPrefabParent: 0
