@@ -32,10 +32,10 @@ public class Card : MonoBehaviour {
 
         if (slerpTo != null)
         {
-            Vector3 diff = this.transform.position - slerpTo.transform.position;
+            Vector3 diff = this.transform.position - (slerpTo.transform.position + slerpTo.transform.up / 4);
             this.transform.position = this.transform.position - diff * Time.deltaTime;
-            slerpTo.rotation = Quaternion.AngleAxis(90, Vector3.right);
-            this.transform.rotation = slerpTo.transform.rotation;
+            Quaternion rotation = Quaternion.AngleAxis(90, Vector3.right);
+            this.transform.rotation = rotation;
         }
 
 
