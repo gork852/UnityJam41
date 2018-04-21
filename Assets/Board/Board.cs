@@ -213,17 +213,6 @@ public class Board : MonoBehaviour {
         return position;
     }
 
-
-
-    public class ActionPosition
-    {
-        int targetRow;
-        int targetCol;
-
-        List<Card> cardsQueued = new List<Card>(); //Actions will be applied to all cards queued at once
-
-    }
-
 }
 
 
