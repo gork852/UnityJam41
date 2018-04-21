@@ -104,9 +104,6 @@ public class Board : MonoBehaviour {
                 attemptMove(position, curCard);
             }
         }
-
-
-
     }
 
     public void attemptMove(BoardPosition bpos, Card activeCard)
@@ -182,7 +179,7 @@ public class Board : MonoBehaviour {
 
             targetPosition = getBoardPosition(row, col);
 
-            if (targetPosition != null && targetPosition.unitCard != null)
+            if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir)
             {
                 targetPosition.unitCard.applyDamage(activeCard.baseAttack);
             }
