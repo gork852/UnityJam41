@@ -285,13 +285,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 72661597}
-  m_LocalRotation: {x: 0.38263962, y: -0, z: -0, w: 0.9238977}
-  m_LocalPosition: {x: 0, y: 6.7, z: -9.13}
+  m_LocalRotation: {x: 0.466472, y: -0, z: -0, w: 0.88453597}
+  m_LocalPosition: {x: 0, y: 12.52, z: -12.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 44.995003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55.611004, y: 0, z: 0}
 --- !u!1001 &81442242
 Prefab:
   m_ObjectHideFlags: 0
@@ -484,6 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 724957993}
   - component: {fileID: 724957994}
+  - component: {fileID: 724957995}
   m_Layer: 0
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -497,8 +498,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 724957992}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalRotation: {x: 0.5675925, y: -0, z: -0, w: 0.82330966}
+  m_LocalPosition: {x: 0, y: 3.57, z: -10.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775300666}
@@ -514,7 +515,7 @@ Transform:
   - {fileID: 12352726}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 69.165, y: 0, z: 0}
 --- !u!114 &724957994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,10 +528,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  handSize: 0
   totalHandAngle: 30
-  handWidth: 4.5
-  handHeight: 1
+  handWidth: 6
+  handHeight: 0.75
+  testprefab: {fileID: 0}
+--- !u!114 &724957995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 724957992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcb6bf7ea36fee4287c35085becaa4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camObject: {fileID: 72661597}
 --- !u!1001 &760862644
 Prefab:
   m_ObjectHideFlags: 0
@@ -1291,7 +1304,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2021544318}
   m_LocalRotation: {x: 0, y: 0.9914449, z: -0.13052616, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 4.5}
+  m_LocalPosition: {x: 0, y: -0.48, z: 10.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 54526486}
@@ -1312,10 +1325,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  handSize: 0
   totalHandAngle: 30
   handWidth: 4.5
   handHeight: 1
+  testprefab: {fileID: 0}
 --- !u!4 &2037773577 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4975689754948860, guid: d4941729a72113841be1440d511b30ec,
