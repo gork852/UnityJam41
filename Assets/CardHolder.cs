@@ -51,12 +51,24 @@ public class CardHolder : MonoBehaviour {
                 idealLocations[i].transform.Rotate(new Vector3(0, 0, 1), 0f);
             }
             else {
-                float anglePercent = i / ((float)handSize - 1);
-
+                float anglePercent;
+                if (handSize > 6)
+                {
+                    anglePercent = i / ((float)handSize - 1);
+                }
+                else
+                {
+                    float phantomUsed = 6 - handSize;
+                    float usedLeft = phantomUsed / 2;
+                    anglePercent = (i+usedLeft) / (6-1); 
+                }
+                
+                //Debug.Log(anglePercent);
+                //.Log(i + (6 - handSize) / 2);
                 idealLocations[i].transform.rotation = new Quaternion();
-                Debug.Log(-handWidth + anglePercent * 2 * handWidth);
-                Debug.Log(handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1));
-                Debug.Log(anglePercent * .1f);
+                //Debug.Log(-handWidth + anglePercent * 2 * handWidth);
+                //Debug.Log(handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1));
+                //Debug.Log(anglePercent * .1f);
                 idealLocations[i].transform.localPosition = new Vector3(-handWidth + anglePercent * 2 * handWidth, handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1), anglePercent * .1f);
                 idealLocations[i].transform.Rotate(new Vector3(0, 0, 1), totalHandAngle - anglePercent * 2 * totalHandAngle);
             }
