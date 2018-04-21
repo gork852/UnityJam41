@@ -60,7 +60,7 @@ public class playerHandPicker : MonoBehaviour {
                 if(hand.hand.Contains(rayCard))
                     selectify = rayCard;
             }
-            else if (Input.GetMouseButtonDown(0) && bordComp != null)
+            else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
                 hand.board.addCardToBoard(hand.removeCard(selectify), bordComp.row, bordComp.col, hand.dir);
                 selectify = null;
