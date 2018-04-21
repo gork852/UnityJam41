@@ -5,7 +5,7 @@ using UnityEngine;
 public class Board : MonoBehaviour {
 
     float beatGap = 1.0f;
-    float lastTime = Time.time;
+    float lastTime;
 
     List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
@@ -13,9 +13,12 @@ public class Board : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        this.GetComponentsInChildren<BoardPosition>();
+        lastTime = Time.time;
+        BoardPosition[] tempList = this.GetComponentsInChildren<BoardPosition>();
 
-        foreach (BoardPosition position in boardPositions)
+        Debug.Log("Board Postions found: " + boardPositions.Count);
+
+        foreach (BoardPosition position in tempList)
         {
             Dictionary<int, BoardPosition> outValue;
 
@@ -33,6 +36,7 @@ public class Board : MonoBehaviour {
                 indexedBoardPosition.Add(position.row, outValue);
             }
 
+            boardPositions.Add(position);
         }
 
     }
@@ -43,6 +47,7 @@ public class Board : MonoBehaviour {
 
         if (isBeat())
         {
+            Debug.Log("Next Beat Start");
             attackPhase();
             damagePhase();
             movePhase();
@@ -63,6 +68,8 @@ public class Board : MonoBehaviour {
                 curCard.beatsRemaining--;
                 if (curCard.beatsRemaining < 0)
                     curCard.beatsRemaining = curCard.beatSpeed;
+
+                curCard.hasMoved = false;
             }
         }
     }
@@ -89,12 +96,12 @@ public class Board : MonoBehaviour {
         int row, col;
         BoardPosition targetPosition;
 
-        if (activeCard.beatsRemaining == 0)
+        if (activeCard.beatsRemaining == 0 && !activeCard.hasMoved)
         {
             row = activeCard.row;
             col = activeCard.col;
 
-            col++;
+            row += activeCard.dir;
             targetPosition = getBoardPosition(row, col);
 
             if (targetPosition != null)
@@ -102,8 +109,10 @@ public class Board : MonoBehaviour {
                 if(targetPosition.unitCard == null)
                 {
                     bpos.unitCard = null;
-                    activeCard.col++;
+                    activeCard.row = row;
                     targetPosition.unitCard = activeCard;
+                    activeCard.transform.position = targetPosition.transform.position;
+                    activeCard.hasMoved = true;
                 }
             }
         }
@@ -121,7 +130,7 @@ public class Board : MonoBehaviour {
                 if(curCard.curHealth <= 0)
                 {
                     position.unitCard = null;
-                    Destroy(curCard);
+                    Destroy(curCard.gameObject);
                 }
             }
         }
@@ -151,11 +160,11 @@ public class Board : MonoBehaviour {
             row = activeCard.row;
             col = activeCard.col;
 
-            col += activeCard.unitRange;
+            row += activeCard.unitRange;
 
             targetPosition = getBoardPosition(row, col);
 
-            if (targetPosition != null)
+            if (targetPosition != null && targetPosition.unitCard != null)
             {
                 targetPosition.unitCard.applyDamage(activeCard.baseAttack);
             }
@@ -164,7 +173,7 @@ public class Board : MonoBehaviour {
 
     public bool isBeat()
     {
-        if (lastTime + beatGap <= Time.time)
+        if ((lastTime + beatGap) <= Time.time)
         {
             lastTime = Time.time;
             return true;
@@ -180,7 +189,10 @@ public class Board : MonoBehaviour {
 
         if (indexedBoardPosition.TryGetValue(row, out outValue))
         {
-            outValue.TryGetValue(row, out position);
+            if(outValue.TryGetValue(col, out position))
+            {
+                Debug.Log("Value at " + row + " " + col + "Found");
+            }
         }
 
         return position;

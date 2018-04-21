@@ -16,7 +16,9 @@ public class Card : MonoBehaviour {
     public int row;
     public int col;
     public int unitRange;
+    public int dir;
 
+    public bool hasMoved = false;
 
 	// Use this for initialization
 	void Start () {
