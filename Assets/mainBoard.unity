@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camObject: {fileID: 72661597}
+  selectShow: {fileID: 1017127030640234, guid: 6173d4f78b4411044b88d9fed1a5f817, type: 2}
 --- !u!1 &566930065
 GameObject:
   m_ObjectHideFlags: 0
