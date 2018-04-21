@@ -18,7 +18,9 @@ public class Card : MonoBehaviour {
     public int unitRange;
     public int dir;
 
+
     public bool hasMoved = false;
+    public Transform slerpTo;
 
 	// Use this for initialization
 	void Start () {
@@ -27,12 +29,21 @@ public class Card : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (slerpTo != null)
+        {
+            Vector3 diff = this.transform.position - slerpTo.transform.position;
+            this.transform.position = this.transform.position - diff * Time.deltaTime;
+        }
+
+
+    }
 
     public void applyDamage(int damage)
     {
         curHealth -= damage;
     }
+
+
 
 }

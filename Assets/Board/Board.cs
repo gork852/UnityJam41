@@ -111,8 +111,8 @@ public class Board : MonoBehaviour {
                     bpos.unitCard = null;
                     activeCard.row = row;
                     targetPosition.unitCard = activeCard;
-                    activeCard.transform.position = targetPosition.transform.position;
                     activeCard.hasMoved = true;
+                    activeCard.slerpTo = targetPosition.transform;
                 }
             }
         }
