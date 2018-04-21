@@ -62,7 +62,8 @@ public class playerHandPicker : MonoBehaviour {
             }
             else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
-                hand.board.addCardToBoard(hand.removeCard(selectify), bordComp.row, bordComp.col, hand.dir);
+                Card c = hand.removeCard(selectify);
+                hand.board.addCardToBoard(c, bordComp.row, bordComp.col, hand.dir);
                 selectify = null;
             }
             if (selectify!=null)
@@ -85,6 +86,7 @@ public class playerHandPicker : MonoBehaviour {
         
         
     }
+
     void OnApplicationQuit()
     {
         Debug.Log("cleaning line bug");

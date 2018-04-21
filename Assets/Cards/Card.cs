@@ -22,9 +22,12 @@ public class Card : MonoBehaviour {
     public bool hasMoved = false;
     public Transform slerpTo;
 
+    public enum cardState{inDeck,inhand,onboard,ingrave,inexile}
+    public cardState state;
+
 	// Use this for initialization
 	void Start () {
-		
+        state = cardState.inexile;
 	}
 	
 	// Update is called once per frame

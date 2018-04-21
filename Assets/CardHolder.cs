@@ -33,6 +33,7 @@ public class CardHolder : MonoBehaviour {
             if (c)
             {
                 hand.Add(c);
+                c.state = Card.cardState.inhand;
                 idealLocations.Add(new GameObject());
                 idealLocations[hand.Count - 1].name = "Card Position " + (hand.Count - 1);
                 idealLocations[hand.Count - 1].transform.parent = phantomHand.transform;
@@ -107,9 +108,11 @@ public class CardHolder : MonoBehaviour {
 	}
     public void addCardToHand(GameObject card)
     {
+        
         card.transform.parent = this.transform;
         Debug.Log("got one");
         Card c = card.gameObject.GetComponent<Card>();
+        c.state = Card.cardState.inhand;
         if (c)
         {
             hand.Add(c);
