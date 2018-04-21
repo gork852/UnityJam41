@@ -62,9 +62,13 @@ public class playerHandPicker : MonoBehaviour {
             }
             else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
-                Card c = hand.removeCard(selectify);
-                hand.board.addCardToBoard(c, bordComp.row, bordComp.col, hand.dir);
-                selectify = null;
+                Card c = selectify.GetComponent<Card>();
+                if (bordComp.isPlayableHere(c))
+                {
+                    hand.removeCard(c);
+                    hand.board.addCardToBoard(c, bordComp.row, bordComp.col, hand.dir);
+                    selectify = null;
+                }
             }
             if (selectify!=null)
             {

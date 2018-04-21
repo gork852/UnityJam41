@@ -24,6 +24,8 @@ public class Card : MonoBehaviour {
 
     public enum cardState{inDeck,inhand,onboard,ingrave,inexile}
     public cardState state;
+    public enum cardType {creature,  targetCreature, targetRow, targetBoard, targetCol}
+    public cardType type;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +44,14 @@ public class Card : MonoBehaviour {
         }
 
 
+    }
+    public bool isValidTarget(Card actor)
+    {
+        if (this.state == Card.cardState.onboard && this.type==Card.cardType.creature && actor.type == Card.cardType.targetCreature)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void applyDamage(int damage)
