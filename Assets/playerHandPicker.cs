@@ -55,10 +55,14 @@ public class playerHandPicker : MonoBehaviour {
             //Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
             Card rayCard = interfaceHit.collider.GetComponent<Card>();
             BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
-            if (Input.GetMouseButtonDown(0) && rayCard)
+            if (Input.GetMouseButtonDown(0) && rayCard != null)
             {
                 if(hand.hand.Contains(rayCard))
                     selectify = rayCard;
+            }
+            else if (Input.GetMouseButtonDown(0) && bordComp != null)
+            {
+                hand.board.addCardToBoard(selectify, bordComp.row, bordComp.col, hand.dir);
             }
             if (selectify!=null)
             {
