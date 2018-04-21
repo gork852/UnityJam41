@@ -59,5 +59,11 @@ public class playerHandPicker : MonoBehaviour {
             }
         }
         
+        
+    }
+    void OnApplicationQuit()
+    {
+        Debug.Log("cleaning line bug");
+        Destroy(actionLine);
     }
 }
