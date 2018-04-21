@@ -1,0 +1,38 @@
+Card+Rythm
+Grid bassed
+
+Fantasy
+	creatures
+		elf
+		man
+		bear
+		mechanical
+		dragon
+	type
+		archerer
+		mage
+		cleric
+			does not advance into combat
+		warrior
+		templar
+		berzerker
+		seige engine
+		pesant
+		artifact
+		theif
+		bandit
+
+effect
+	weather
+		ice
+		rain
+		fog
+	buff
+		+2/+2
+	healing
+		2 points
+	damage
+		5 points
+	destroy
+	advance
+	retreat
