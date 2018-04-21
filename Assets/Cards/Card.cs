@@ -6,11 +6,12 @@ public class Card : MonoBehaviour {
 
     string name;
 
-    int attackValue;
-    int healthValue;
+    public int baseAttack;
+    int maxHealth;
+    public int curHealth;
 
-    int beatSpeed;
-    int beatsRemaining; //Beats remaining until next move
+    public int beatSpeed;
+    public int beatsRemaining; //Beats remaining until next move
 
     public int row;
     public int col;
@@ -26,4 +27,10 @@ public class Card : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void applyDamage(int damage)
+    {
+        curHealth -= damage;
+    }
+
 }

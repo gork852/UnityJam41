@@ -8,43 +8,159 @@ public class Board : MonoBehaviour {
     float lastTime = Time.time;
 
     List<BoardPosition> boardPositions = new List<BoardPosition>();
-    Dictionary<int, Dictionary<int, ActionPosition>> queuedAttackActions = new Dictionary<int, Dictionary<int, ActionPosition>>();
-    Dictionary<int, Dictionary<int, ActionPosition>> queuedMoveActions = new Dictionary<int, Dictionary<int, ActionPosition>>();
+    Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
 
     // Use this for initialization
     void Start() {
 
         this.GetComponentsInChildren<BoardPosition>();
 
+        foreach (BoardPosition position in boardPositions)
+        {
+            Dictionary<int, BoardPosition> outValue;
 
+            if (indexedBoardPosition.TryGetValue(position.row, out outValue))
+            {
+                if (!outValue.ContainsKey(position.col))
+                {
+                    outValue.Add(position.col, position);
+                }
+            }
+            else
+            {
+                outValue = new Dictionary<int, BoardPosition>();
+                outValue.Add(position.col, position);
+                indexedBoardPosition.Add(position.row, outValue);
+            }
+
+        }
 
     }
 
     // Update is called once per frame
     void Update() {
-        int row, col;
+        
 
         if (isBeat())
         {
+            attackPhase();
+            damagePhase();
+            movePhase();
+        }
+        updateBeats();
 
-            foreach(BoardPosition position in boardPositions)
+    }
+
+    public void updateBeats()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions)
+        {
+            curCard = position.unitCard;
+            if (curCard != null)
             {
-                row = position.unitCard.row;
-                col = position.unitCard.col;
-
-
-
-
-
+                curCard.beatsRemaining--;
+                if (curCard.beatsRemaining < 0)
+                    curCard.beatsRemaining = curCard.beatSpeed;
             }
-
-
-
         }
     }
 
+    public void movePhase()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions)
+        {
+            curCard = position.unitCard;
+            if (curCard != null)
+            {
+                attemptMove(position, curCard);
+            }
+        }
 
 
+
+    }
+
+    public void attemptMove(BoardPosition bpos, Card activeCard)
+    {
+        int row, col;
+        BoardPosition targetPosition;
+
+        if (activeCard.beatsRemaining == 0)
+        {
+            row = activeCard.row;
+            col = activeCard.col;
+
+            col++;
+            targetPosition = getBoardPosition(row, col);
+
+            if (targetPosition != null)
+            {
+                if(targetPosition.unitCard == null)
+                {
+                    bpos.unitCard = null;
+                    activeCard.col++;
+                    targetPosition.unitCard = activeCard;
+                }
+            }
+        }
+    }
+
+    public void damagePhase()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions)
+        {
+            curCard = position.unitCard;
+            if (curCard != null)
+            {
+                if(curCard.curHealth <= 0)
+                {
+                    position.unitCard = null;
+                    Destroy(curCard);
+                }
+            }
+        }
+    }
+
+    public void attackPhase()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions) 
+        {
+            curCard = position.unitCard;
+            if (curCard != null)
+            {
+                attack(curCard);
+            }
+        }
+    }
+
+    public void attack(Card activeCard)
+    {
+        int row, col;
+        BoardPosition targetPosition;
+
+        if (activeCard.beatsRemaining == 0)
+        {
+            row = activeCard.row;
+            col = activeCard.col;
+
+            col += activeCard.unitRange;
+
+            targetPosition = getBoardPosition(row, col);
+
+            if (targetPosition != null)
+            {
+                targetPosition.unitCard.applyDamage(activeCard.baseAttack);
+            }
+        }
+    }
 
     public bool isBeat()
     {
@@ -57,13 +173,23 @@ public class Board : MonoBehaviour {
             return false;
     }
 
+    public BoardPosition getBoardPosition(int row, int col)
+    {
+        Dictionary<int, BoardPosition> outValue;
+        BoardPosition position = null;
 
+        if (indexedBoardPosition.TryGetValue(row, out outValue))
+        {
+            outValue.TryGetValue(row, out position);
+        }
+
+        return position;
+    }
 
 
 
     public class ActionPosition
     {
-        public string action;
         int targetRow;
         int targetCol;
 
