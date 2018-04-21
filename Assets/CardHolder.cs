@@ -5,15 +5,18 @@ using UnityEngine;
 public class CardHolder : MonoBehaviour {
 
     public List<Card> hand;
-    public int handSize;
+    
     public float totalHandAngle = 30f;
     public float handWidth = 4;
     public float handHeight = 2;
+
+    public GameObject testprefab;
 
     private List<GameObject> idealLocations;
     private GameObject phantomHand;
     // Use this for initialization
     void Start () {
+        int handSize;
         hand = new List<Card>();
         phantomHand = new GameObject();
         phantomHand.name = "phantomHand";
@@ -27,24 +30,35 @@ public class CardHolder : MonoBehaviour {
             Card c = child.gameObject.GetComponent<Card>();
             if (c)
             {
-                idealLocations.Add(new GameObject());
-                idealLocations[handSize].name = "Card Position " + handSize;
-                idealLocations[handSize].transform.parent = phantomHand.transform;
                 hand.Add(c);
+                idealLocations.Add(new GameObject());
+                idealLocations[hand.Count - 1].name = "Card Position " + (hand.Count - 1);
+                idealLocations[hand.Count - 1].transform.parent = phantomHand.transform;
+                
                 handSize++;
             }
         }
-
 	}
-	
+    private float rep = 3;
 	// Update is called once per frame
 	void Update () {
-
         //Quaternion temp = this.transform.rotation;
         //this.transform.rotation = new Quaternion();
+        if (Time.time > rep)
+        {
+            Card c = removeRandomCard();
+            if(c) Destroy(c.gameObject);
+            rep = Time.time + 3;
+        }
+        if (testprefab)
+        {
+            addDemoCardToHand();
+            testprefab = null;
+        }
+
 		for(int i = 0; i < hand.Count; i++)
         {
-            if (handSize == 1)
+            if (hand.Count == 1)
             {
                 idealLocations[i].transform.rotation = new Quaternion();
                 idealLocations[i].transform.localPosition = new Vector3(0, handHeight, 0);
@@ -52,13 +66,13 @@ public class CardHolder : MonoBehaviour {
             }
             else {
                 float anglePercent;
-                if (handSize > 6)
+                if (hand.Count > 6)
                 {
-                    anglePercent = i / ((float)handSize - 1);
+                    anglePercent = i / ((float)hand.Count - 1);
                 }
                 else
                 {
-                    float phantomUsed = 6 - handSize;
+                    float phantomUsed = 6 - hand.Count;
                     float usedLeft = phantomUsed / 2;
                     anglePercent = (i+usedLeft) / (6-1); 
                 }
@@ -83,4 +97,44 @@ public class CardHolder : MonoBehaviour {
         }
         //this.transform.rotation = temp;
 	}
+    void addCardToHand(GameObject card)
+    {
+        card.transform.parent = this.transform;
+        Debug.Log("got one");
+        Card c = card.gameObject.GetComponent<Card>();
+        if (c)
+        {
+            hand.Add(c);
+            idealLocations.Add(new GameObject());
+            idealLocations[hand.Count - 1].name = "Card Position " + (hand.Count - 1);
+            idealLocations[hand.Count-1].transform.parent = phantomHand.transform;
+            
+        }
+    }
+    void addDemoCardToHand()
+    {
+        this.addCardToHand(Instantiate(testprefab));
+    }
+    Card removeCard(int index)
+    {
+        Card tmp = hand[index];
+        hand.RemoveAt(index);
+        idealLocations.RemoveAt(index);
+        return tmp;
+    }
+    Card removeCard(GameObject index)
+    {
+        return removeCard(index.GetComponent<Card>());
+    }
+    Card removeCard(Card index)
+    {
+        return removeCard(hand.IndexOf(index));
+    }
+    Card removeRandomCard()
+    {
+        if (hand.Count>0)
+            return removeCard(Random.Range(0, hand.Count));
+        else
+            return null;
+    }
 }
