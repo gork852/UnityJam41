@@ -8,7 +8,8 @@ public class Board : MonoBehaviour {
     float lastTime = Time.time;
 
     List<BoardPosition> boardPositions = new List<BoardPosition>();
-    Dictionary<>
+    Dictionary<int, Dictionary<int, ActionPosition>> queuedAttackActions = new Dictionary<int, Dictionary<int, ActionPosition>>();
+    Dictionary<int, Dictionary<int, ActionPosition>> queuedMoveActions = new Dictionary<int, Dictionary<int, ActionPosition>>();
 
     // Use this for initialization
     void Start() {
@@ -21,12 +22,17 @@ public class Board : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        int row, col;
+
         if (isBeat())
         {
 
             foreach(BoardPosition position in boardPositions)
             {
-                position.unitCard
+                row = position.unitCard.row;
+                col = position.unitCard.col;
+
+
 
 
 

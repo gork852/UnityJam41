@@ -12,8 +12,9 @@ public class Card : MonoBehaviour {
     int beatSpeed;
     int beatsRemaining; //Beats remaining until next move
 
-    int row;
-    int col;
+    public int row;
+    public int col;
+    public int unitRange;
 
 
 	// Use this for initialization
