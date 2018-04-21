@@ -71,6 +71,7 @@ public class Board : MonoBehaviour {
             card.row = row;
             card.col = col;
             card.transform.parent = null;
+            card.state = Card.cardState.onboard;
         }
         else
         {
