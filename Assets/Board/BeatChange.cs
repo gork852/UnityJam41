@@ -23,7 +23,7 @@ public class BeatChange : MonoBehaviour {
         Vector3 diff = this.transform.localScale - new Vector3(1,1,1)*scaleTarget;
         this.transform.localScale = this.transform.localScale - diff * Time.deltaTime;
 
-        scaleTarget *= .9f;
+        scaleTarget *= .87f;
         if (scaleTarget < 1)
             scaleTarget = 1;
 
