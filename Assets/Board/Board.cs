@@ -7,6 +7,8 @@ public class Board : MonoBehaviour {
     float beatGap = 1.0f;
     float lastTime;
 
+
+
     List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
 
@@ -66,6 +68,7 @@ public class Board : MonoBehaviour {
             card.dir = dir;
             card.row = row;
             card.col = col;
+            card.transform.parent = null;
         }
         else
         {
@@ -211,17 +214,6 @@ public class Board : MonoBehaviour {
         }
 
         return position;
-    }
-
-
-
-    public class ActionPosition
-    {
-        int targetRow;
-        int targetCol;
-
-        List<Card> cardsQueued = new List<Card>(); //Actions will be applied to all cards queued at once
-
     }
 
 }
