@@ -44,12 +44,22 @@ public class CardHolder : MonoBehaviour {
         //this.transform.rotation = new Quaternion();
 		for(int i = 0; i < hand.Count; i++)
         {
-            float anglePercent = i / ((float)handSize - 1);
+            if (handSize == 1)
+            {
+                idealLocations[i].transform.rotation = new Quaternion();
+                idealLocations[i].transform.localPosition = new Vector3(0, handHeight, 0);
+                idealLocations[i].transform.Rotate(new Vector3(0, 0, 1), 0f);
+            }
+            else {
+                float anglePercent = i / ((float)handSize - 1);
 
-            idealLocations[i].transform.rotation = new Quaternion();
-            idealLocations[i].transform.position = this.transform.position + new Vector3(-handWidth + anglePercent * 2 * handWidth, handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1), anglePercent * .1f);
-            idealLocations[i].transform.Rotate(new Vector3(0, 0, 1), totalHandAngle-anglePercent*2*totalHandAngle);
-            
+                idealLocations[i].transform.rotation = new Quaternion();
+                Debug.Log(-handWidth + anglePercent * 2 * handWidth);
+                Debug.Log(handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1));
+                Debug.Log(anglePercent * .1f);
+                idealLocations[i].transform.localPosition = new Vector3(-handWidth + anglePercent * 2 * handWidth, handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1), anglePercent * .1f);
+                idealLocations[i].transform.Rotate(new Vector3(0, 0, 1), totalHandAngle - anglePercent * 2 * totalHandAngle);
+            }
 
             /*hand[i].transform.rotation = new Quaternion();
             hand[i].transform.position = this.transform.position + new Vector3(-handWidth + anglePercent * 2 * handWidth, handHeight * Mathf.Pow(Mathf.Sin(anglePercent * Mathf.PI), 1), anglePercent * .1f);
@@ -57,6 +67,7 @@ public class CardHolder : MonoBehaviour {
             Vector3 diff = hand[i].transform.position - idealLocations[i].transform.position;
             hand[i].transform.position = hand[i].transform.position - diff * Time.deltaTime;
             hand[i].transform.rotation = idealLocations[i].transform.rotation;
+            
         }
         //this.transform.rotation = temp;
 	}
