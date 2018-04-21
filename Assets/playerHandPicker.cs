@@ -57,16 +57,25 @@ public class playerHandPicker : MonoBehaviour {
             BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
             if (Input.GetMouseButtonDown(0) && rayCard != null)
             {
+                if (rayCard.state == Card.cardState.onboard && selectify!=null)
+                {
+                    if (rayCard.isValidTarget(selectify))
+                    {
+                        hand.removeCard(selectify);
+                        rayCard.playCardToThis(selectify);
+                        selectify = null;
+                    }
+                }
                 if(hand.hand.Contains(rayCard))
                     selectify = rayCard;
             }
             else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
-                Card c = selectify.GetComponent<Card>();
-                if (bordComp.isPlayableHere(c))
+                
+                if (bordComp.isPlayableHere(selectify))
                 {
-                    hand.removeCard(c);
-                    hand.board.addCardToBoard(c, bordComp.row, bordComp.col, hand.dir);
+                    hand.removeCard(selectify);
+                    hand.board.addCardToBoard(selectify, bordComp.row, bordComp.col, hand.dir);
                     selectify = null;
                 }
             }

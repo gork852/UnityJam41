@@ -53,7 +53,12 @@ public class Card : MonoBehaviour {
         }
         return false;
     }
-
+    public void playCardToThis(Card actor)
+    {
+        actor.transform.parent = this.transform;
+        actor.transform.position = this.transform.position + new Vector3(0,2,0);
+        actor.state = Card.cardState.onboard;
+    }
     public void applyDamage(int damage)
     {
         curHealth -= damage;
