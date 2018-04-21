@@ -47,12 +47,30 @@ public class Board : MonoBehaviour {
 
         if (isBeat())
         {
-            Debug.Log("Next Beat Start");
+            //Debug.Log("Next Beat Start");
             attackPhase();
             damagePhase();
             movePhase();
         }
         updateBeats();
+
+    }
+
+    public void addCardToBoard(Card card, int row, int col, int dir)
+    {
+        BoardPosition pos = getBoardPosition(row, col);
+        if(pos!= null && pos.unitCard == null)
+        {
+            pos.unitCard = card;
+            card.slerpTo = pos.transform;
+            card.dir = dir;
+            card.row = row;
+            card.col = col;
+        }
+        else
+        {
+            Destroy(card.gameObject);
+        }
 
     }
 
@@ -191,7 +209,7 @@ public class Board : MonoBehaviour {
         {
             if(outValue.TryGetValue(col, out position))
             {
-                Debug.Log("Value at " + row + " " + col + "Found");
+                //Debug.Log("Value at " + row + " " + col + "Found");
             }
         }
 

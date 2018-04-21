@@ -5,10 +5,12 @@ using UnityEngine;
 public class CardHolder : MonoBehaviour {
 
     public List<Card> hand;
-    
+    public Board board;
     public float totalHandAngle = 30f;
     public float handWidth = 4;
     public float handHeight = 2;
+    public int dir = 0;
+    public int startRow;
 
     public GameObject testprefab;
 
@@ -47,7 +49,11 @@ public class CardHolder : MonoBehaviour {
         if (Time.time > rep)
         {
             Card c = removeRandomCard();
-            if(c) Destroy(c.gameObject);
+            if (c != null)
+                board.addCardToBoard(c, startRow, (int)Random.Range(0, 6), dir);
+            else
+                Debug.Log("Null Card");
+            //if(c) Destroy(c.gameObject);
             rep = Time.time + 3;
         }
         if (testprefab)
