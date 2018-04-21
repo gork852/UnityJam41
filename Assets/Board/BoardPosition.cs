@@ -35,5 +35,17 @@ public class BoardPosition : MonoBehaviour {
 
 	}
 
+    public bool isPlayableHere(Card card)
+    {
+        if (unitCard == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }

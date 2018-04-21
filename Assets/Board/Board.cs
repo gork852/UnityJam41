@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Board : MonoBehaviour {
 
     float beatGap = 1.0f;
     float lastTime;
 
-
+    public UnityEvent beat;
 
     List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
@@ -53,6 +54,7 @@ public class Board : MonoBehaviour {
             attackPhase();
             damagePhase();
             movePhase();
+            beat.Invoke();
         }
         updateBeats();
 
@@ -215,6 +217,20 @@ public class Board : MonoBehaviour {
 
         return position;
     }
+
+    public bool isPlayableAtPosition(Card card, int row, int col)
+    {
+        BoardPosition pos = getBoardPosition(row, col);
+        if (pos.isPlayableHere(card))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }
 
