@@ -48,7 +48,7 @@ public class CardHolder : MonoBehaviour {
         phantomHand.transform.rotation = this.transform.rotation;
         //Quaternion temp = this.transform.rotation;
         //this.transform.rotation = new Quaternion();
-        if (Time.time > rep)
+        if (Time.time > rep && false)
         {
             Card c = removeRandomCard();
             if (c != null)
