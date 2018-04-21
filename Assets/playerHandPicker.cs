@@ -9,6 +9,9 @@ public class playerHandPicker : MonoBehaviour {
     private Card selectify;
     public GameObject selectShow;
     private LineRenderer actionLine;
+    private Vector3 defaultHandPos;
+    public Vector3 hideHandOffset;
+    private Vector3 hideHandPos;
 	// Use this for initialization
 	void Start () {
         cam = camObject.GetComponent<Camera>();
@@ -19,13 +22,34 @@ public class playerHandPicker : MonoBehaviour {
         actionLine.positionCount = 20;
         selectShow.SetActive(false);
         Debug.Log(this.transform.GetComponent<LineRenderer>());
+        defaultHandPos = hand.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        hideHandPos = defaultHandPos + hideHandOffset;
+
         Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit interfaceHit = new RaycastHit();
         Physics.Raycast(mouseRay, out interfaceHit);
+        if (Input.GetMouseButtonDown(1))
+        {
+            selectify = null;
+        }
+        if (selectify != null)
+        {
+            selectShow.SetActive(true);
+            selectShow.transform.position = selectify.transform.position;
+            selectShow.transform.rotation = selectify.transform.rotation;
+            selectShow.transform.position -= selectify.transform.forward * .005f;
+            actionLine.positionCount = 0;
+
+            hand.transform.position = hand.transform.position*(1 - Time.deltaTime) + hideHandPos * Time.deltaTime;
+        }
+        else
+        {
+            hand.transform.position = hand.transform.position * (1 - Time.deltaTime) + defaultHandPos * Time.deltaTime;
+        }
         if (interfaceHit.collider)
         {
             //Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
@@ -33,17 +57,13 @@ public class playerHandPicker : MonoBehaviour {
             BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
             if (Input.GetMouseButtonDown(0) && rayCard)
             {
-                selectify = rayCard;
+                if(hand.hand.Contains(rayCard))
+                    selectify = rayCard;
             }
             if (selectify!=null)
             {
+                actionLine.positionCount = 20;
                 Debug.DrawLine(selectify.transform.position, interfaceHit.transform.position);
-                selectShow.SetActive(true);
-                selectShow.transform.position = selectify.transform.position;
-                selectShow.transform.rotation = selectify.transform.rotation;
-                //selectShow.transform.parent = selectify.transform;
-                selectShow.transform.position -= selectify.transform.forward*.005f;
-                
                 for (int i = 0; i < actionLine.positionCount; i++)
                 {
                     float percentLine = i / (actionLine.positionCount - 1f);
@@ -51,7 +71,6 @@ public class playerHandPicker : MonoBehaviour {
                     Vector3 hoverHeight = new Vector3(leanBias * 2, Mathf.Sin(percentLine * Mathf.PI) * 4, 0);
                     actionLine.SetPosition(i, selectify.transform.position * (1 - percentLine) + hoverHeight + interfaceHit.transform.position * percentLine);
                 }
-                
             }
             else
             {
@@ -64,6 +83,7 @@ public class playerHandPicker : MonoBehaviour {
     void OnApplicationQuit()
     {
         Debug.Log("cleaning line bug");
+        actionLine.positionCount = 0;
         Destroy(actionLine);
     }
 }
