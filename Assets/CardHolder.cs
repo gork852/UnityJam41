@@ -105,7 +105,7 @@ public class CardHolder : MonoBehaviour {
         }
         //this.transform.rotation = temp;
 	}
-    void addCardToHand(GameObject card)
+    public void addCardToHand(GameObject card)
     {
         card.transform.parent = this.transform;
         Debug.Log("got one");
@@ -123,22 +123,22 @@ public class CardHolder : MonoBehaviour {
     {
         this.addCardToHand(Instantiate(testprefab));
     }
-    Card removeCard(int index)
+    public Card removeCard(int index)
     {
         Card tmp = hand[index];
         hand.RemoveAt(index);
         idealLocations.RemoveAt(index);
         return tmp;
     }
-    Card removeCard(GameObject index)
+    public Card removeCard(GameObject index)
     {
         return removeCard(index.GetComponent<Card>());
     }
-    Card removeCard(Card index)
+    public Card removeCard(Card index)
     {
         return removeCard(hand.IndexOf(index));
     }
-    Card removeRandomCard()
+    public Card removeRandomCard()
     {
         if (hand.Count>0)
             return removeCard(Random.Range(0, hand.Count));
