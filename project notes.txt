@@ -12,7 +12,6 @@ Fantasy
 		archerer
 		mage
 		cleric
-			does not advance into combat
 		warrior
 		templar
 		berzerker
