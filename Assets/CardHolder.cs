@@ -10,6 +10,8 @@ public class CardHolder : MonoBehaviour {
     public float handWidth = 4;
     public float handHeight = 2;
 
+    public GameObject testprefab;
+
     private List<GameObject> idealLocations;
     private GameObject phantomHand;
     // Use this for initialization
@@ -34,14 +36,18 @@ public class CardHolder : MonoBehaviour {
                 handSize++;
             }
         }
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
         //Quaternion temp = this.transform.rotation;
         //this.transform.rotation = new Quaternion();
+        if (testprefab)
+        {
+            addDemoCardToHand();
+            testprefab = null;
+        }
+
 		for(int i = 0; i < hand.Count; i++)
         {
             if (handSize == 1)
@@ -83,4 +89,22 @@ public class CardHolder : MonoBehaviour {
         }
         //this.transform.rotation = temp;
 	}
+    void addCardToHand(GameObject card)
+    {
+        card.transform.parent = this.transform;
+        Debug.Log("got one");
+        Card c = card.gameObject.GetComponent<Card>();
+        if (c)
+        {
+            idealLocations.Add(new GameObject());
+            idealLocations[handSize].name = "Card Position " + handSize;
+            idealLocations[handSize].transform.parent = phantomHand.transform;
+            hand.Add(c);
+            handSize++;
+        }
+    }
+    void addDemoCardToHand()
+    {
+        this.addCardToHand(Instantiate(testprefab));
+    }
 }
