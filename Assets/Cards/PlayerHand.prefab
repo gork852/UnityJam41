@@ -303,6 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482400138347134}
   - component: {fileID: 114481373215135820}
+  - component: {fileID: 114388023495455666}
   m_Layer: 0
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -804,8 +805,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488635588800240}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalRotation: {x: 0.56640625, y: 0, z: 0, w: 0.82412624}
+  m_LocalPosition: {x: 0, y: 3.57, z: -10.468049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814047421694382}
@@ -821,7 +822,7 @@ Transform:
   - {fileID: 4004190275339422}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 69, y: 0, z: 0}
 --- !u!4 &4488382477482998
 Transform:
   m_ObjectHideFlags: 1
@@ -2574,6 +2575,19 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+--- !u!114 &114388023495455666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488635588800240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcb6bf7ea36fee4287c35085becaa4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camObject: {fileID: 0}
+  selectShow: {fileID: 1017127030640234, guid: 6173d4f78b4411044b88d9fed1a5f817, type: 2}
 --- !u!114 &114420897978688022
 MonoBehaviour:
   m_ObjectHideFlags: 1
