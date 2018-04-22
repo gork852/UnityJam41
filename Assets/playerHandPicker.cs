@@ -61,7 +61,19 @@ public class playerHandPicker : MonoBehaviour {
 
             hand.transform.position = hand.transform.position*(1 - Time.deltaTime) + hideHandPos * Time.deltaTime;
 
-            if(selectify.type== Card.cardType.targetBoard)
+            
+        }
+        else
+        {
+            hand.transform.position = hand.transform.position * (1 - Time.deltaTime) + defaultHandPos * Time.deltaTime;
+            targetBoard.SetActive(false);
+        }
+        if (interfaceHit.collider)
+        {
+            Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
+            Card rayCard = interfaceHit.collider.GetComponent<Card>();
+            BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
+            if (selectify!=null&&selectify.type == Card.cardType.targetBoard && rayCard == null)
             {
                 targetBoard.SetActive(true);
             }
@@ -69,18 +81,8 @@ public class playerHandPicker : MonoBehaviour {
             {
                 targetBoard.SetActive(false);
             }
-        }
-        else
-        {
-            hand.transform.position = hand.transform.position * (1 - Time.deltaTime) + defaultHandPos * Time.deltaTime;
-        }
-        if (interfaceHit.collider)
-        {
-            Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
-            Card rayCard = interfaceHit.collider.GetComponent<Card>();
-            BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
 
-                if (Input.GetMouseButtonDown(0) && rayCard != null)
+            if (Input.GetMouseButtonDown(0) && rayCard != null)
             {
                 if (rayCard.state == Card.cardState.onboard && selectify!=null)
                 {
@@ -169,6 +171,7 @@ public class playerHandPicker : MonoBehaviour {
         else
         {
             targetShow.SetActive(false);
+            targetBoard.SetActive(false);
         }
         
         
