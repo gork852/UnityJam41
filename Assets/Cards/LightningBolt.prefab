@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4577120926453726}
   - component: {fileID: 65239709894455566}
   - component: {fileID: 114851854254269502}
+  - component: {fileID: 114018517291313796}
   m_Layer: 0
   m_Name: LightningBolt
   m_TagString: Untagged
@@ -227,6 +228,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114018517291313796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481929871598544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c892a74f6e6a02946b45d2227f4cd1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114851854254269502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,5 +260,5 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
-  state: 0
-  type: 0
+  state: 4
+  type: 1

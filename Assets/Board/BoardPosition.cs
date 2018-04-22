@@ -37,14 +37,24 @@ public class BoardPosition : MonoBehaviour {
 
     public bool isPlayableHere(Card card)
     {
-        if (unitCard == null)
+        if(card.type == Card.cardType.creature && unitCard == null)
         {
+            return true;
+        }
+        /*else if(card.type == Card.cardType.targetCreature && unitCard != null)
+        {
+            return true;
+        }*/
+        else if(card.type != Card.cardType.creature && card.type !=Card.cardType.targetCreature)
+        { 
             return true;
         }
         else
         {
             return false;
         }
+
+        
     }
 
 

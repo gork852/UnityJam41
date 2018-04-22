@@ -29,7 +29,7 @@ public class Card : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        state = cardState.inexile;
+        //state = cardState.inexile;
 	}
 	
 	// Update is called once per frame
@@ -58,6 +58,11 @@ public class Card : MonoBehaviour {
         actor.transform.parent = this.transform;
         actor.transform.position = this.transform.position + new Vector3(0,2,0);
         actor.state = Card.cardState.onboard;
+        targetAction acton = actor.GetComponent<targetAction>();
+        Debug.Log(curHealth);
+        acton.actOnTarget(this);
+        Debug.Log("WINNER");
+        Debug.Log(curHealth);
     }
     public void applyDamage(int damage)
     {

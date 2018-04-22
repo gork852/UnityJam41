@@ -245,3 +245,8 @@ MonoBehaviour:
   row: 0
   col: 0
   unitRange: 0
+  dir: 0
+  hasMoved: 0
+  slerpTo: {fileID: 0}
+  state: 4
+  type: 0
