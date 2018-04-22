@@ -11,6 +11,8 @@ public class BeatChange : MonoBehaviour {
     public float decay;
     float maxScale;
 
+    Vector3 old;
+
 	// Use this for initialization
 	void Start () {
         minScale = 1;
@@ -24,13 +26,16 @@ public class BeatChange : MonoBehaviour {
             board.Beat.AddListener(beat);
         }
 
+        old = transform.localScale;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        Vector3 diff = this.transform.localScale - new Vector3(1,1,1)*scaleTarget;
+        Vector3 diff = this.transform.localScale - old*scaleTarget;
         this.transform.localScale = this.transform.localScale - diff * Time.deltaTime;
+
+        //this.transform.localScale = old + old * scaleTarget;
 
         scaleTarget *= decay;
         if (scaleTarget < minScale)
