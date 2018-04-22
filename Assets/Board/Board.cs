@@ -185,10 +185,11 @@ public class Board : MonoBehaviour {
 
             targetPosition = getBoardPosition(row, col);
 
-            if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir)
+            if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir && activeCard.baseAttack > 0)
             {
                 targetPosition.unitCard.applyDamage(activeCard.baseAttack);
-                activeCard.applyDamage(targetPosition.unitCard.baseAttack);
+                if(targetPosition.unitCard.unitRange == activeCard.unitRange)
+                    activeCard.applyDamage(targetPosition.unitCard.baseAttack);
             }
         }
     }
