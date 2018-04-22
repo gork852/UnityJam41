@@ -10,7 +10,7 @@ public class Board : MonoBehaviour {
 
     public UnityEvent Beat;
 
-    List<BoardPosition> boardPositions = new List<BoardPosition>();
+    public List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
 
     // Use this for initialization
