@@ -2449,6 +2449,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114065296374080726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,6 +2472,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114154086020077964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2491,6 +2495,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114191550700054434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2512,6 +2518,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114236656063485234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2533,6 +2541,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114273550787404610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2554,6 +2564,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114351846056089442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2575,6 +2587,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114388023495455666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2588,6 +2602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camObject: {fileID: 0}
   selectShow: {fileID: 1017127030640234, guid: 6173d4f78b4411044b88d9fed1a5f817, type: 2}
+  targetShow: {fileID: 1608865484757600, guid: 6f3bee7eff6428641ba6e9e5b05921ae, type: 2}
+  hideHandOffset: {x: 0, y: -2, z: -1}
 --- !u!114 &114420897978688022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2609,6 +2625,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114465254265963194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2630,6 +2648,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114481373215135820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2670,6 +2690,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114699432649138698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2691,3 +2713,5 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0

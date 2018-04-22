@@ -9,9 +9,11 @@ public class playerHandPicker : MonoBehaviour {
     private Card selectify;
     public GameObject selectShow;
     private LineRenderer actionLine;
+    public GameObject targetShow;
     private Vector3 defaultHandPos;
     public Vector3 hideHandOffset;
     private Vector3 hideHandPos;
+    
 	// Use this for initialization
 	void Start () {
         cam = camObject.GetComponent<Camera>();
@@ -21,7 +23,9 @@ public class playerHandPicker : MonoBehaviour {
         actionLine = selectShow.GetComponent<LineRenderer>();
         actionLine.positionCount = 20;
         selectShow.SetActive(false);
-        Debug.Log(this.transform.GetComponent<LineRenderer>());
+        targetShow = Instantiate(targetShow);
+        targetShow.SetActive(false);
+        //Debug.Log(this.transform.GetComponent<LineRenderer>());
         defaultHandPos = hand.transform.position;
 	}
 	
@@ -50,11 +54,13 @@ public class playerHandPicker : MonoBehaviour {
         {
             hand.transform.position = hand.transform.position * (1 - Time.deltaTime) + defaultHandPos * Time.deltaTime;
         }
+
         if (interfaceHit.collider)
         {
             //Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
             Card rayCard = interfaceHit.collider.GetComponent<Card>();
             BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
+
             if (Input.GetMouseButtonDown(0) && rayCard != null)
             {
                 if (rayCard.state == Card.cardState.onboard && selectify!=null)
@@ -71,7 +77,6 @@ public class playerHandPicker : MonoBehaviour {
             }
             else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
-                
                 if (bordComp.isPlayableHere(selectify))
                 {
                     hand.removeCard(selectify);
@@ -79,8 +84,31 @@ public class playerHandPicker : MonoBehaviour {
                     selectify = null;
                 }
             }
-            if (selectify!=null)
+
+            if (selectify!=null&&((bordComp != null && bordComp.isPlayableHere(selectify)) || (rayCard!=null&&rayCard.isValidTarget(selectify))))
             {
+                GameObject targ = bordComp != null ? bordComp.gameObject : rayCard.gameObject;
+                targetShow.SetActive(true);
+                targetShow.transform.position = targ.transform.position + targ.transform.forward * .05f;
+                if (bordComp != null)
+                {
+                    targetShow.transform.rotation = new Quaternion(1, 0, 0, 1);
+                }
+                else
+                {
+                    targetShow.transform.rotation = targ.transform.rotation;
+                }
+            }
+            else
+            {
+                targetShow.SetActive(false);
+            }
+            if (selectify!=null && (
+                bordComp!=null&&bordComp.isPlayableHere(selectify) ||
+                rayCard!=null&&rayCard.isValidTarget(selectify)
+                ))
+            {
+                
                 actionLine.positionCount = 20;
                 Debug.DrawLine(selectify.transform.position, interfaceHit.transform.position);
                 for (int i = 0; i < actionLine.positionCount; i++)
@@ -91,11 +119,12 @@ public class playerHandPicker : MonoBehaviour {
                     actionLine.SetPosition(i, selectify.transform.position * (1 - percentLine) + hoverHeight + interfaceHit.transform.position * percentLine);
                 }
             }
-            else
+            else if(selectify==null)
             {
                 selectShow.SetActive(false);
             }
         }
+        
         
         
     }
