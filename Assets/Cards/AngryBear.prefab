@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4768221218106264}
   - component: {fileID: 65454474406453136}
   - component: {fileID: 114613714379556452}
+  - component: {fileID: 114689242891347932}
   m_Layer: 0
   m_Name: AngryBear
   m_TagString: Untagged
@@ -250,3 +251,18 @@ MonoBehaviour:
   slerpTo: {fileID: 0}
   state: 4
   type: 0
+--- !u!114 &114689242891347932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474113565766196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleTarget: 0
+  minScale: 1
+  scaleBeatModifier: 6
+  decay: 0.5

@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4036794713327706}
   - component: {fileID: 65107355042813358}
   - component: {fileID: 114755582874065416}
+  - component: {fileID: 114048542075551802}
   m_Layer: 0
   m_Name: NullCard
   m_TagString: Untagged
@@ -70,7 +71,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933277512670546}
-  m_LocalRotation: {x: -0.15509617, y: 0.9792385, z: -0.12891915, w: -0.020418793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1.25, y: 1.75, z: 0.005}
   m_Children:
@@ -227,6 +228,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114048542075551802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1933277512670546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleTarget: 0
+  minScale: 1
+  scaleBeatModifier: 6
+  decay: 0.5
 --- !u!114 &114755582874065416
 MonoBehaviour:
   m_ObjectHideFlags: 1

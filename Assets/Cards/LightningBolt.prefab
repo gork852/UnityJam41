@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 65239709894455566}
   - component: {fileID: 114851854254269502}
   - component: {fileID: 114018517291313796}
+  - component: {fileID: 114352522184654574}
   m_Layer: 0
   m_Name: LightningBolt
   m_TagString: Untagged
@@ -239,6 +240,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c892a74f6e6a02946b45d2227f4cd1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114352522184654574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481929871598544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleTarget: 0
+  minScale: 1
+  scaleBeatModifier: 6
+  decay: 0.5
 --- !u!114 &114851854254269502
 MonoBehaviour:
   m_ObjectHideFlags: 1
