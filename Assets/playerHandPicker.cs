@@ -198,6 +198,17 @@ public class playerHandPicker : MonoBehaviour {
                     Vector3 hoverHeight = new Vector3(leanBias * 2, Mathf.Sin(percentLine * Mathf.PI) * 4, 0);
                     actionLine.SetPosition(i, selectify.transform.position * (1 - percentLine) + hoverHeight + interfaceHit.transform.position * percentLine);
                 }
+                
+                if (rayCard != null)
+                {
+                    targetShow.SetActive(true);
+                    targetShow.transform.position = interfaceHit.transform.position - interfaceHit.transform.forward * .05f;
+                }
+                else if(bordComp != null){
+                    targetShow.SetActive(true);
+                    targetShow.transform.position = interfaceHit.transform.position + interfaceHit.transform.forward * .05f;
+                }
+                //Debug.Break();
             }
             else if(selectify==null)
             {
