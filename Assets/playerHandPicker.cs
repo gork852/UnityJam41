@@ -106,7 +106,16 @@ public class playerHandPicker : MonoBehaviour {
                     if (selectify.type == Card.cardType.targetBoard)
                     {
                         bool applyOnce = false;
-                        for (int col = 0; col <= 4; col++)
+                        foreach(BoardPosition pos in hand.board.boardPositions)
+                        {
+                            if (pos.unitCard != null && pos.unitCard.type == Card.cardType.creature)
+                            {
+                                Debug.Log("attempt");
+                                selectify.GetComponent<targetAction>().actOnTarget(pos.unitCard);
+                                applyOnce = true;
+                            }
+                        }
+                        /*for (int col = 0; col <= 4; col++)
                         {
                             for(int row = 0; row <= 7; row++)
                             {
@@ -119,7 +128,7 @@ public class playerHandPicker : MonoBehaviour {
                                     applyOnce = true;
                                 }
                             }
-                        }
+                        }*/
                         selectify.transform.parent = null;
                         selectify.transform.position = new Vector3(0, 2, 0);
                         if (!applyOnce)
