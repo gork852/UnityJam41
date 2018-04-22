@@ -2603,6 +2603,10 @@ MonoBehaviour:
   camObject: {fileID: 0}
   selectShow: {fileID: 1017127030640234, guid: 6173d4f78b4411044b88d9fed1a5f817, type: 2}
   targetShow: {fileID: 1608865484757600, guid: 6f3bee7eff6428641ba6e9e5b05921ae, type: 2}
+  targetBoard: {fileID: 1530921897258244, guid: 42c77a1244a061f499bdf5e477a11717,
+    type: 2}
+  targetCol: {fileID: 1836822011863430, guid: a897b7e4890cf374082e81bcdc3ba73d, type: 2}
+  targetRow: {fileID: 1089122974879258, guid: 12f1d1d1febc4284b92b39f129de3a06, type: 2}
   hideHandOffset: {x: 0, y: -2, z: -1}
 --- !u!114 &114420897978688022
 MonoBehaviour:

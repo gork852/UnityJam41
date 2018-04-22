@@ -10,6 +10,9 @@ public class playerHandPicker : MonoBehaviour {
     public GameObject selectShow;
     private LineRenderer actionLine;
     public GameObject targetShow;
+    public GameObject targetBoard;
+    public GameObject targetCol;
+    public GameObject targetRow;
     private Vector3 defaultHandPos;
     public Vector3 hideHandOffset;
     private Vector3 hideHandPos;
@@ -25,12 +28,20 @@ public class playerHandPicker : MonoBehaviour {
         selectShow.SetActive(false);
         targetShow = Instantiate(targetShow);
         targetShow.SetActive(false);
+        targetBoard = Instantiate(targetBoard);
+        targetBoard.SetActive(false);
+        targetRow = Instantiate(targetRow);
+        targetRow.SetActive(false);
+        targetCol = Instantiate(targetCol);
+        targetCol.SetActive(false);
         //Debug.Log(this.transform.GetComponent<LineRenderer>());
         defaultHandPos = hand.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
+
         hideHandPos = defaultHandPos + hideHandOffset;
 
         Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
@@ -49,12 +60,20 @@ public class playerHandPicker : MonoBehaviour {
             actionLine.positionCount = 0;
 
             hand.transform.position = hand.transform.position*(1 - Time.deltaTime) + hideHandPos * Time.deltaTime;
+
+            if(selectify.type== Card.cardType.targetBoard)
+            {
+                targetBoard.SetActive(true);
+            }
+            else
+            {
+                targetBoard.SetActive(false);
+            }
         }
         else
         {
             hand.transform.position = hand.transform.position * (1 - Time.deltaTime) + defaultHandPos * Time.deltaTime;
         }
-
         if (interfaceHit.collider)
         {
             //Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
@@ -72,8 +91,10 @@ public class playerHandPicker : MonoBehaviour {
                         selectify = null;
                     }
                 }
-                if(hand.hand.Contains(rayCard))
+                if (hand.hand.Contains(rayCard))
+                {
                     selectify = rayCard;
+                }
             }
             else if (Input.GetMouseButtonDown(0) && bordComp != null && selectify != null)
             {
@@ -84,19 +105,40 @@ public class playerHandPicker : MonoBehaviour {
                     selectify = null;
                 }
             }
-
-            if (selectify!=null&&((bordComp != null && bordComp.isPlayableHere(selectify)) || (rayCard!=null&&rayCard.isValidTarget(selectify))))
+            if ((selectify!=null&&(selectify.type!=Card.cardType.targetBoard))
+                &&
+                ((bordComp != null && bordComp.isPlayableHere(selectify)) || (rayCard!=null&&rayCard.isValidTarget(selectify))))
             {
-                GameObject targ = bordComp != null ? bordComp.gameObject : rayCard.gameObject;
-                targetShow.SetActive(true);
-                targetShow.transform.position = targ.transform.position + targ.transform.forward * .05f;
-                if (bordComp != null)
+                if (selectify.type == Card.cardType.targetCol)
                 {
-                    targetShow.transform.rotation = new Quaternion(1, 0, 0, 1);
+                    if (bordComp != null)
+                    {
+                        targetCol.SetActive(true);
+                        targetCol.transform.position = bordComp.transform.position - new Vector3(0, 0, bordComp.transform.position.z);
+                    }
                 }
-                else
+                else if (selectify.type == Card.cardType.targetRow)
                 {
-                    targetShow.transform.rotation = targ.transform.rotation;
+                    if(bordComp != null)
+                    {
+                        targetRow.SetActive(true);
+                        targetRow.transform.position = bordComp.transform.position - new Vector3(bordComp.transform.position.x, 0, 0);
+                    }
+                }
+                else {
+
+
+                    GameObject targ = bordComp != null ? bordComp.gameObject : rayCard.gameObject;
+                    targetShow.SetActive(true);
+                    targetShow.transform.position = targ.transform.position + targ.transform.forward * .05f;
+                    if (bordComp != null)
+                    {
+                        targetShow.transform.rotation = new Quaternion(1, 0, 0, 1);
+                    }
+                    else
+                    {
+                        targetShow.transform.rotation = targ.transform.rotation;
+                    }
                 }
             }
             else
@@ -123,6 +165,10 @@ public class playerHandPicker : MonoBehaviour {
             {
                 selectShow.SetActive(false);
             }
+        }
+        else
+        {
+            targetShow.SetActive(false);
         }
         
         
