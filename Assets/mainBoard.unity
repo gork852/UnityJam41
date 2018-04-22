@@ -758,6 +758,11 @@ Prefab:
       propertyPath: state
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114171381376856682, guid: d4941729a72113841be1440d511b30ec,
+        type: 2}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4941729a72113841be1440d511b30ec, type: 2}
   m_IsPrefabParent: 0
@@ -1210,6 +1215,11 @@ Prefab:
         type: 2}
       propertyPath: state
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171381376856682, guid: d4941729a72113841be1440d511b30ec,
+        type: 2}
+      propertyPath: type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4941729a72113841be1440d511b30ec, type: 2}

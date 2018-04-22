@@ -27,9 +27,14 @@ public class Card : MonoBehaviour {
     public enum cardType {creature,  targetCreature, targetRow, targetBoard, targetCol}
     public cardType type;
 
-	// Use this for initialization
-	void Start () {
+    private GameObject effectHolder;
+
+    // Use this for initialization
+    void Start () {
         //state = cardState.inexile;
+        effectHolder = new GameObject();
+        effectHolder.transform.parent = this.transform;
+        effectHolder.transform.localScale = new Vector3(1, 1, 1);
 	}
 	
 	// Update is called once per frame
@@ -55,14 +60,14 @@ public class Card : MonoBehaviour {
     }
     public void playCardToThis(Card actor)
     {
-        actor.transform.parent = this.transform;
+        Vector3 scale = actor.transform.localScale;
+        
+        actor.transform.parent = this.effectHolder.transform;
+        actor.transform.localScale = scale;
         actor.transform.position = this.transform.position + new Vector3(0,2,0);
         actor.state = Card.cardState.onboard;
         targetAction acton = actor.GetComponent<targetAction>();
-        Debug.Log(curHealth);
         acton.actOnTarget(this);
-        Debug.Log("WINNER");
-        Debug.Log(curHealth);
     }
     public void applyDamage(int damage)
     {
