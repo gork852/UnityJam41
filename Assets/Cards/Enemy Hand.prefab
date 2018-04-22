@@ -712,6 +712,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114516484949235656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -752,6 +754,8 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
 --- !u!114 &114901801710700450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -773,3 +777,5 @@ MonoBehaviour:
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
+  state: 0
+  type: 0
