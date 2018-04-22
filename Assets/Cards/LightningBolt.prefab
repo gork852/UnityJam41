@@ -249,4 +249,4 @@ MonoBehaviour:
   hasMoved: 0
   slerpTo: {fileID: 0}
   state: 0
-  type: 0
+  type: 1
