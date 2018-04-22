@@ -103,7 +103,34 @@ public class playerHandPicker : MonoBehaviour {
                 if (bordComp.isPlayableHere(selectify))
                 {
                     hand.removeCard(selectify);
-                    hand.board.addCardToBoard(selectify, bordComp.row, bordComp.col, hand.dir);
+                    if (selectify.type == Card.cardType.targetBoard)
+                    {
+                        bool applyOnce = false;
+                        for (int col = 0; col <= 4; col++)
+                        {
+                            for(int row = 0; row <= 7; row++)
+                            {
+                                Debug.Log("pos" + row + ":" + col);
+                                BoardPosition applypos = hand.board.getBoardPosition(row, col);
+                                if (applypos.unitCard != null && applypos.unitCard.type == Card.cardType.creature)
+                                {
+                                    Debug.Log("attempt");
+                                    selectify.GetComponent<targetAction>().actOnTarget(applypos.unitCard);
+                                    applyOnce = true;
+                                }
+                            }
+                        }
+                        selectify.transform.parent = null;
+                        selectify.transform.position = new Vector3(0, 2, 0);
+                        if (!applyOnce)
+                        {
+                            Destroy(selectify);
+                        }
+                    }
+                    else
+                    {
+                        hand.board.addCardToBoard(selectify, bordComp.row, bordComp.col, hand.dir);
+                    }
                     selectify = null;
                 }
             }
