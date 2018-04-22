@@ -238,15 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a63b90e7a389849b76e53a696e3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttack: 0
-  curHealth: 0
-  beatSpeed: 0
-  beatsRemaining: 0
+  baseAttack: 5
+  curHealth: 3
+  beatSpeed: 4
+  beatsRemaining: 4
   row: 0
   col: 0
-  unitRange: 0
+  unitRange: 1
   dir: 0
   hasMoved: 0
   slerpTo: {fileID: 0}
-  state: 0
+  state: 4
   type: 0
