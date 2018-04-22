@@ -41,10 +41,10 @@ public class BoardPosition : MonoBehaviour {
         {
             return true;
         }
-        else if(card.type == Card.cardType.targetCreature && unitCard != null)
+        /*else if(card.type == Card.cardType.targetCreature && unitCard != null)
         {
             return true;
-        }
+        }*/
         else if(card.type != Card.cardType.creature && card.type !=Card.cardType.targetCreature)
         { 
             return true;

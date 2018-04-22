@@ -76,11 +76,11 @@ public class playerHandPicker : MonoBehaviour {
         }
         if (interfaceHit.collider)
         {
-            //Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
+            Debug.DrawLine(new Vector3(0, 0, 0), interfaceHit.transform.position);
             Card rayCard = interfaceHit.collider.GetComponent<Card>();
             BoardPosition bordComp = interfaceHit.collider.GetComponent<BoardPosition>();
 
-            if (Input.GetMouseButtonDown(0) && rayCard != null)
+                if (Input.GetMouseButtonDown(0) && rayCard != null)
             {
                 if (rayCard.state == Card.cardState.onboard && selectify!=null)
                 {

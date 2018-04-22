@@ -13,7 +13,7 @@ public class targetActionLightning : targetAction {
 	void Update () {
 		
 	}
-    void actOnTarget(Card target)
+    override public void actOnTarget(Card target)
     {
         target.applyDamage(5);
         Destroy(this.gameObject);

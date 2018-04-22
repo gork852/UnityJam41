@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class targetAction : MonoBehaviour {
+public abstract class targetAction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,5 @@ public class targetAction : MonoBehaviour {
 	void Update () {
 		
 	}
-    void actOnTarget(Card target)
-    {
-        
-    }
+    public abstract void actOnTarget(Card target);
 }
