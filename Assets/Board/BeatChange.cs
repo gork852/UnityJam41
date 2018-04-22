@@ -8,6 +8,7 @@ public class BeatChange : MonoBehaviour {
     public float scaleTarget;
     public float minScale;
     public float scaleBeatModifier;
+    public float decay;
     float maxScale;
 
 	// Use this for initialization
@@ -15,6 +16,14 @@ public class BeatChange : MonoBehaviour {
         minScale = 1;
         maxScale = minScale + scaleBeatModifier;
         scaleTarget = 1;
+
+        Board board = GameObject.FindObjectOfType<Board>();
+
+        if (board != null)
+        {
+            board.Beat.AddListener(beat);
+        }
+
 	}
 	
 	// Update is called once per frame
@@ -23,9 +32,9 @@ public class BeatChange : MonoBehaviour {
         Vector3 diff = this.transform.localScale - new Vector3(1,1,1)*scaleTarget;
         this.transform.localScale = this.transform.localScale - diff * Time.deltaTime;
 
-        scaleTarget *= .87f;
-        if (scaleTarget < 1)
-            scaleTarget = 1;
+        scaleTarget *= decay;
+        if (scaleTarget < minScale)
+            scaleTarget = minScale;
 
     }
 

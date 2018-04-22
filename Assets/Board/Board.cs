@@ -8,7 +8,7 @@ public class Board : MonoBehaviour {
     float beatGap = 1.0f;
     float lastTime;
 
-    public UnityEvent beat;
+    public UnityEvent Beat;
 
     List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
@@ -54,7 +54,7 @@ public class Board : MonoBehaviour {
             attackPhase();
             damagePhase();
             movePhase();
-            beat.Invoke();
+            Beat.Invoke();
         }
         updateBeats();
 
@@ -188,6 +188,7 @@ public class Board : MonoBehaviour {
             if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir)
             {
                 targetPosition.unitCard.applyDamage(activeCard.baseAttack);
+                activeCard.applyDamage(targetPosition.unitCard.baseAttack);
             }
         }
     }
