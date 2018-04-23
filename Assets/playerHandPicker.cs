@@ -208,7 +208,7 @@ public class playerHandPicker : MonoBehaviour {
                     targetShow.SetActive(true);
                     targetShow.transform.position = interfaceHit.transform.position + interfaceHit.transform.forward * .05f;
                 }
-                //Debug.Break();
+                
             }
             else if(selectify==null)
             {

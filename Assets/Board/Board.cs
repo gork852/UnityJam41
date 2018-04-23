@@ -10,7 +10,8 @@ public class Board : MonoBehaviour {
     public GameObject NumberPrefab;
     public GameObject keyIndPrefab;
     public UnityEvent Beat;
-
+    public AudioSource beatSound;
+    public GameObject goodSound;
     public List<BoardPosition> boardPositions = new List<BoardPosition>();
     Dictionary<int, Dictionary<int, BoardPosition>> indexedBoardPosition = new Dictionary<int, Dictionary<int, BoardPosition>>();
 
@@ -60,6 +61,8 @@ public class Board : MonoBehaviour {
             movePhase();
             Beat.Invoke();
             updateBeats();
+            
+            beatSound.Play();
         }
         
 
@@ -77,7 +80,6 @@ public class Board : MonoBehaviour {
                 //curCard.timedPress.expectedTime = Time.time;
                 curCard.timedPress.active = false;
                 curCard.timedPress.compareTime();
-                Debug.Break();
             }
             else if(curCard != null && curCard.timedPress == null)
             {
@@ -139,7 +141,6 @@ public class Board : MonoBehaviour {
                 numberHold.transform.localPosition = new Vector3();
                 numberHold.transform.rotation = new Quaternion();
                 numberHold.transform.localScale = new Vector3(1, 1, 1);
-                //Debug.Break();
                 
                 GameObject atkNum = Instantiate(NumberPrefab);
                 NumberDisplay.numberGetter atkGet = delegate { return card.baseAttack; };
@@ -168,6 +169,11 @@ public class Board : MonoBehaviour {
                 card.timedPress.initTimes(.1f, .2f, .4f);
                 if (dir == -1)
                 {
+                    GameObject gsnd = Instantiate(goodSound);
+                    gsnd.transform.position = numberHold.transform.position;
+                    gsnd.transform.parent = numberHold.transform;
+                    card.timedPress.beatsound = gsnd.GetComponent<AudioSource>();
+
                     GameObject keyPressIndicator = Instantiate(keyIndPrefab);
                     beatIndicator beatIndicatorComp = keyPressIndicator.GetComponent<beatIndicator>();
                     if (beatIndicatorComp == null)
@@ -265,6 +271,8 @@ public class Board : MonoBehaviour {
                 {
                     if (activeCard.timedPress.pressStatus != TimedKeyPress.Status.Miss)
                     {
+                        if(activeCard.timedPress.beatsound!=null )
+                            activeCard.timedPress.beatsound.Play();
                         bpos.unitCard = null;
                         activeCard.row = row;
                         targetPosition.unitCard = activeCard;
@@ -321,7 +329,10 @@ public class Board : MonoBehaviour {
             row += activeCard.unitRange;
 
             targetPosition = getBoardPosition(row, col);
-
+            if(targetPosition == null)
+            {
+                hpUI.changeHp(activeCard.dir, activeCard.baseAttack);
+            }
             if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir && activeCard.baseAttack > 0)
             {
                 int attackModifier = 0;

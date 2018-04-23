@@ -10,6 +10,8 @@ public class TimedKeyPress : MonoBehaviour {
     public float pressGraceGood;
     public float pressGracePoor;
 
+    public AudioSource beatsound;
+
     public beatIndicator indicator;
     public float scaler;
     public float beatGap;
