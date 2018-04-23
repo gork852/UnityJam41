@@ -71,12 +71,22 @@ public class Board : MonoBehaviour {
         foreach (BoardPosition position in boardPositions)
         {
             curCard = position.unitCard;
-            if (curCard != null && curCard.timedPress != null)
+            if (curCard != null && curCard.timedPress != null && curCard.beatsRemaining == 0)
             {
                 curCard.timedPress.expectedTime = Time.time;
                 curCard.timedPress.active = false;
                 curCard.timedPress.compareTime();
             }
+            else if(curCard != null && curCard.timedPress == null)
+            {
+                curCard.timedPress = gameObject.AddComponent<TimedKeyPress>();
+                curCard.timedPress.initTimes(.1f, .2f, .3f);
+                if (curCard.dir == -1)
+                    curCard.timedPress.setAI(false);
+                else if (curCard.dir == 1)
+                    curCard.timedPress.setAI(true);
+            }
+
         }
     }
 
@@ -146,6 +156,13 @@ public class Board : MonoBehaviour {
                 actionNum.transform.parent = numberHold.transform;
                 actionNum.transform.localScale = new Vector3(1, 1, 1);
                 actionNum.transform.localPosition = new Vector3(0, 0, -10f);
+
+                card.timedPress = gameObject.AddComponent<TimedKeyPress>();
+                card.timedPress.initTimes(.1f, .2f, .3f);
+                if (dir == -1)
+                    card.timedPress.setAI(false);
+                else if(dir == 1)
+                    card.timedPress.setAI(true);
             }
         }
         else
@@ -219,11 +236,14 @@ public class Board : MonoBehaviour {
             {
                 if(targetPosition.unitCard == null)
                 {
-                    bpos.unitCard = null;
-                    activeCard.row = row;
-                    targetPosition.unitCard = activeCard;
-                    activeCard.hasMoved = true;
-                    activeCard.slerpTo = targetPosition.transform;
+                    if (activeCard.timedPress.pressStatus != TimedKeyPress.Status.Miss)
+                    {
+                        bpos.unitCard = null;
+                        activeCard.row = row;
+                        targetPosition.unitCard = activeCard;
+                        activeCard.hasMoved = true;
+                        activeCard.slerpTo = targetPosition.transform;
+                    }
                 }
             }
         }
@@ -277,7 +297,16 @@ public class Board : MonoBehaviour {
 
             if (targetPosition != null && targetPosition.unitCard != null && targetPosition.unitCard.dir != activeCard.dir && activeCard.baseAttack > 0)
             {
-                targetPosition.unitCard.applyDamage(activeCard.baseAttack);
+                int attackModifier = 0;
+                if (activeCard.timedPress.pressStatus == TimedKeyPress.Status.Perfect)
+                    attackModifier += 1;
+                else if (activeCard.timedPress.pressStatus == TimedKeyPress.Status.Poor)
+                    attackModifier -= 1;
+                else if (activeCard.timedPress.pressStatus == TimedKeyPress.Status.Miss)
+                    attackModifier -= activeCard.baseAttack;
+
+
+                targetPosition.unitCard.applyDamage(Mathf.Clamp(activeCard.baseAttack + attackModifier, 0, 1000));
                 if(targetPosition.unitCard.unitRange == activeCard.unitRange)
                     activeCard.applyDamage(targetPosition.unitCard.baseAttack);
             }

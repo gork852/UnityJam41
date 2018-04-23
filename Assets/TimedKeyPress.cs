@@ -10,8 +10,9 @@ public class TimedKeyPress : MonoBehaviour {
     public float pressGraceGood;
     public float pressGracePoor;
 
+    public bool isAI;
 
-    float timePressed;
+    public float timePressed;
     public float expectedTime;
     public bool active = false;
     public bool pressed = false;
@@ -20,29 +21,31 @@ public class TimedKeyPress : MonoBehaviour {
 
     public IEnumerator update;
 
-    Status pressStatus;
+    public Status pressStatus;
 
     public void initTimes(float gracePerfect, float graceGood, float gracePoor)
     {
         pressGracePerfect = gracePerfect;
         pressGraceGood = graceGood;
         pressGracePoor = gracePoor;
-        
     }
 
+    public void setAI(bool val)
+    {
+        isAI = val;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (active)
+        if (active && !isAI)
         {
-
             Debug.Log("Key Active! " + codeString);
             if (Input.GetKeyDown(code))
             {
-                compareTime();
                 active = false;
                 pressed = true;
+                timePressed = Time.time;
             }
         }
 
@@ -51,7 +54,9 @@ public class TimedKeyPress : MonoBehaviour {
     public void compareTime()
     {
         float timeDiff = expectedTime - timePressed;
-        
+
+        Debug.Log("Time Expected: " + expectedTime + "Time Pressed: " + timePressed);
+
         if (Mathf.Abs(timeDiff) < pressGracePerfect)
             pressStatus = Status.Perfect;
         else if (Mathf.Abs(timeDiff) < pressGraceGood)
@@ -61,7 +66,10 @@ public class TimedKeyPress : MonoBehaviour {
         else
             pressStatus = Status.Miss;
 
-        Debug.Log("Press Result recorded: " + pressStatus);
+        if (isAI)
+            pressStatus = Status.Good;
+
+        //Debug.Log("Press Result recorded: " + pressStatus);
 
     }
 
