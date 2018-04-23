@@ -77,13 +77,13 @@ public class TimedKeyPress : MonoBehaviour {
     {
         if (col == 0)
         {
-            code = KeyCode.Q;
-            codeString = "Q";
+            code = KeyCode.T;
+            codeString = "T";
         }
         else if (col == 1)
         {
-            code = KeyCode.W;
-            codeString = "W";
+            code = KeyCode.R;
+            codeString = "R";
         }
         else if (col == 2)
         {
@@ -92,13 +92,13 @@ public class TimedKeyPress : MonoBehaviour {
         }
         else if (col == 3)
         {
-            code = KeyCode.R;
-            codeString = "R";
+            code = KeyCode.W;
+            codeString = "W";
         }
         else
         {
-            code = KeyCode.T;
-            codeString = "T";
+            code = KeyCode.Q;
+            codeString = "Q";
         }
     }
 
