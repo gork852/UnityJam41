@@ -158,17 +158,24 @@ public class Board : MonoBehaviour {
                 actionNum.transform.localScale = new Vector3(1, 1, 1);
                 actionNum.transform.localPosition = new Vector3(0, 0, -10f);
 
-                GameObject keyPressIndicator = Instantiate(keyIndPrefab);
-                beatIndicator beatIndicatorComp = keyPressIndicator.GetComponent<beatIndicator>();
-                keyPressIndicator.transform.parent = numberHold.transform;
-                keyPressIndicator.transform.localScale = new Vector3(1, 1, 1);
-                keyPressIndicator.transform.localPosition = new Vector3(0, .4f, -10f);
+                
 
                 card.timedPress = gameObject.AddComponent<TimedKeyPress>();
                 card.timedPress.initTimes(.1f, .2f, .3f);
                 if (dir == -1)
+                {
+                    GameObject keyPressIndicator = Instantiate(keyIndPrefab);
+                    beatIndicator beatIndicatorComp = keyPressIndicator.GetComponent<beatIndicator>();
+                    if (beatIndicatorComp == null)
+                        Debug.Log("NULL");
+
+                    keyPressIndicator.transform.parent = numberHold.transform;
+                    keyPressIndicator.transform.localScale = new Vector3(1, 1, 1);
+                    keyPressIndicator.transform.localPosition = new Vector3(0, .4f, -10f);
                     card.timedPress.setAI(false);
-                else if(dir == 1)
+                    card.timedPress.indicator = beatIndicatorComp;
+                }
+                else if (dir == 1)
                     card.timedPress.setAI(true);
             }
         }

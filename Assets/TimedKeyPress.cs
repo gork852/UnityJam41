@@ -10,6 +10,8 @@ public class TimedKeyPress : MonoBehaviour {
     public float pressGraceGood;
     public float pressGracePoor;
 
+    public beatIndicator indicator;
+
     public bool isAI;
 
     public float timePressed;
@@ -47,6 +49,9 @@ public class TimedKeyPress : MonoBehaviour {
                 pressed = true;
                 timePressed = Time.time;
             }
+
+
+
         }
 
 	}
@@ -75,30 +80,38 @@ public class TimedKeyPress : MonoBehaviour {
 
     public void setColumnKeyCode(int col)
     {
-        if (col == 0)
+        if (!isAI)
         {
-            code = KeyCode.T;
-            codeString = "T";
-        }
-        else if (col == 1)
-        {
-            code = KeyCode.R;
-            codeString = "R";
-        }
-        else if (col == 2)
-        {
-            code = KeyCode.E;
-            codeString = "E";
-        }
-        else if (col == 3)
-        {
-            code = KeyCode.W;
-            codeString = "W";
-        }
-        else
-        {
-            code = KeyCode.Q;
-            codeString = "Q";
+            if (col == 0)
+            {
+                code = KeyCode.T;
+                codeString = "T";
+                indicator.displayChar = "T";
+            }
+            else if (col == 1)
+            {
+                code = KeyCode.R;
+                codeString = "R";
+                indicator.displayChar = "R";
+            }
+            else if (col == 2)
+            {
+                code = KeyCode.E;
+                codeString = "E";
+                indicator.displayChar = "E";
+            }
+            else if (col == 3)
+            {
+                code = KeyCode.W;
+                codeString = "W";
+                indicator.displayChar = "W";
+            }
+            else
+            {
+                code = KeyCode.Q;
+                codeString = "Q";
+                indicator.displayChar = "Q";
+            }
         }
     }
 
