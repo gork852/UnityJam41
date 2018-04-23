@@ -28,10 +28,12 @@ public class CardHolder : MonoBehaviour {
         handSize = 0;
         foreach (Transform child in this.transform)
         {
-            Debug.Log("got one");
+            addCardToHand(child.gameObject);
+            /*Debug.Log("got one");
             Card c = child.gameObject.GetComponent<Card>();
             if (c)
             {
+                
                 hand.Add(c);
                 c.state = Card.cardState.inhand;
                 idealLocations.Add(new GameObject());
@@ -40,6 +42,7 @@ public class CardHolder : MonoBehaviour {
                 
                 handSize++;
             }
+            */
         }
 	}
     private float rep = 3;
@@ -115,6 +118,7 @@ public class CardHolder : MonoBehaviour {
         c.state = Card.cardState.inhand;
         if (c)
         {
+            c.dir = dir;
             hand.Add(c);
             idealLocations.Add(new GameObject());
             idealLocations[hand.Count - 1].name = "Card Position " + (hand.Count - 1);

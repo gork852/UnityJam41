@@ -204,7 +204,7 @@ public class playerHandPicker : MonoBehaviour {
                     targetShow.SetActive(true);
                     targetShow.transform.position = interfaceHit.transform.position - interfaceHit.transform.forward * .05f;
                 }
-                else if(bordComp != null){
+                else if(bordComp != null && selectify.type != Card.cardType.targetBoard){
                     targetShow.SetActive(true);
                     targetShow.transform.position = interfaceHit.transform.position + interfaceHit.transform.forward * .05f;
                 }
