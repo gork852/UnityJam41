@@ -18,6 +18,7 @@ public class Card : MonoBehaviour {
     public int unitRange;
     public int dir;
 
+    public TimedKeyPress timedPress;
 
     public bool hasMoved = false;
     public Transform slerpTo;
@@ -35,7 +36,9 @@ public class Card : MonoBehaviour {
         effectHolder = new GameObject();
         effectHolder.transform.parent = this.transform;
         effectHolder.transform.localScale = new Vector3(1, 1, 1);
-	}
+        timedPress = gameObject.AddComponent<TimedKeyPress>();
+        timedPress.initTimes(.1f, .2f, .3f);
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -51,7 +51,7 @@ public class Board : MonoBehaviour {
         if (isBeat())
         {
             //Debug.Log("Next Beat Start");
-            
+            pressResultsPhase();
             actionPhase();
             damagePhase();
             attackPhase();
@@ -62,6 +62,22 @@ public class Board : MonoBehaviour {
         }
         
 
+    }
+
+    public void pressResultsPhase()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions)
+        {
+            curCard = position.unitCard;
+            if (curCard != null && curCard.timedPress != null)
+            {
+                curCard.timedPress.expectedTime = Time.time;
+                curCard.timedPress.active = false;
+                curCard.timedPress.compareTime();
+            }
+        }
     }
 
     public void actionPhase()
@@ -120,7 +136,22 @@ public class Board : MonoBehaviour {
                     curCard.beatsRemaining = curCard.beatSpeed;
 
                 curCard.hasMoved = false;
+
+                resetCardTimer(curCard);
+
+
             }
+        }
+    }
+
+    public void resetCardTimer(Card curCard)
+    {
+        if (curCard.beatsRemaining == 0 && curCard.state == Card.cardState.onboard)
+        {
+            curCard.timedPress.active = true;
+            curCard.timedPress.setColumnKeyCode(curCard.col);
+            curCard.timedPress.pressed = false;
+            curCard.timedPress.expectedTime = 0;
         }
     }
 
