@@ -7,7 +7,7 @@ public class Board : MonoBehaviour {
 
     float beatGap = 1.0f;
     float lastTime;
-
+    public GameObject NumberPrefab;
     public UnityEvent Beat;
 
     public List<BoardPosition> boardPositions = new List<BoardPosition>();
@@ -114,6 +114,38 @@ public class Board : MonoBehaviour {
             card.col = col;
             card.transform.parent = null;
             card.state = Card.cardState.onboard;
+            if(card.type == Card.cardType.creature)
+            {
+                Vector3 spanwpoint = card.transform.position;
+                Debug.DrawLine(spanwpoint, new Vector3());
+                
+                GameObject numberHold = new GameObject();
+                numberHold.transform.parent = card.transform;
+                numberHold.transform.localPosition = new Vector3();
+                numberHold.transform.rotation = new Quaternion();
+                numberHold.transform.localScale = new Vector3(1, 1, 1);
+                //Debug.Break();
+                
+                GameObject atkNum = Instantiate(NumberPrefab);
+                NumberDisplay.numberGetter atkGet = delegate { return card.baseAttack; };
+                atkNum.GetComponent<NumberDisplay>().getter = atkGet;
+                atkNum.transform.parent = numberHold.transform;
+                atkNum.transform.localScale = new Vector3(1, 1, 1);
+                atkNum.transform.localPosition = new Vector3(-.3f,-.4f,-10f);
+
+                GameObject hpNum = Instantiate(NumberPrefab);
+                NumberDisplay.numberGetter hpGet = delegate { return card.curHealth; };
+                hpNum.GetComponent<NumberDisplay>().getter = hpGet;
+                hpNum.transform.parent = numberHold.transform;
+                hpNum.transform.localScale = new Vector3(1, 1, 1);
+                hpNum.transform.localPosition = new Vector3(.3f,-.4f,-10f);
+
+                GameObject actionNum = Instantiate(NumberPrefab);
+                NumberDisplay.numberGetter actGet = delegate { return card.beatsRemaining; };
+                actionNum.transform.parent = numberHold.transform;
+                actionNum.transform.localScale = new Vector3(1, 1, 1);
+                actionNum.transform.localPosition = new Vector3(0, 0, -10f);
+            }
         }
         else
         {

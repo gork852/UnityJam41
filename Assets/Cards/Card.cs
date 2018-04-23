@@ -35,6 +35,7 @@ public class Card : MonoBehaviour {
         //state = cardState.inexile;
         effectHolder = new GameObject();
         effectHolder.transform.parent = this.transform;
+        effectHolder.transform.localPosition = new Vector3(0, 0, 0);
         effectHolder.transform.localScale = new Vector3(1, 1, 1);
         timedPress = gameObject.AddComponent<TimedKeyPress>();
         timedPress.initTimes(.1f, .2f, .3f);

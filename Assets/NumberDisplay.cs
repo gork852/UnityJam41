@@ -5,6 +5,8 @@ using UnityEngine;
 public class NumberDisplay : MonoBehaviour {
     public int number = 0;
     public Color color;
+    public delegate int numberGetter();
+    public numberGetter getter=null;
     private Color oldColor;
     private int oldNumber = 0;
     private string numString;
@@ -16,10 +18,12 @@ public class NumberDisplay : MonoBehaviour {
         text.text = numString;
         oldColor = color;
         text.color = color;
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if(getter!=null) number = getter();
         if (number != oldNumber)
         {
             oldNumber = number;
