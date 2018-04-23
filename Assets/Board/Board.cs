@@ -326,7 +326,7 @@ public class Board : MonoBehaviour {
             row = activeCard.row;
             col = activeCard.col;
 
-            row += activeCard.unitRange;
+            row += activeCard.unitRange*activeCard.dir;
 
             targetPosition = getBoardPosition(row, col);
             if(targetPosition == null)
