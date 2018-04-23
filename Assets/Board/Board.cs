@@ -19,7 +19,7 @@ public class Board : MonoBehaviour {
         lastTime = Time.time;
         BoardPosition[] tempList = this.GetComponentsInChildren<BoardPosition>();
 
-        Debug.Log("Board Postions found: " + boardPositions.Count);
+        Debug.Log("Board Postions found: " + tempList.Length);
 
         foreach (BoardPosition position in tempList)
         {
@@ -51,12 +51,38 @@ public class Board : MonoBehaviour {
         if (isBeat())
         {
             //Debug.Log("Next Beat Start");
+            
+            actionPhase();
+            damagePhase();
             attackPhase();
             damagePhase();
             movePhase();
             Beat.Invoke();
+            updateBeats();
         }
-        updateBeats();
+        
+
+    }
+
+    public void actionPhase()
+    {
+        Card curCard;
+
+        foreach (BoardPosition position in boardPositions)
+        {
+            curCard = position.unitCard;
+            if (curCard != null && curCard.beatsRemaining == 0)
+            {
+                Ability[] abilities = curCard.GetComponents<Ability>();
+                foreach(Ability ability in abilities)
+                {
+                    ability.action(this);
+                }
+
+            }
+        }
+
+
 
     }
 
@@ -198,6 +224,7 @@ public class Board : MonoBehaviour {
     {
         if ((lastTime + beatGap) <= Time.time)
         {
+            Debug.Log(Time.time);
             lastTime = Time.time;
             return true;
         }
