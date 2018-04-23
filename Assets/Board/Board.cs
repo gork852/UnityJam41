@@ -141,7 +141,8 @@ public class Board : MonoBehaviour {
                 hpNum.transform.localPosition = new Vector3(.3f,-.4f,-10f);
 
                 GameObject actionNum = Instantiate(NumberPrefab);
-                NumberDisplay.numberGetter actGet = delegate { return card.beatsRemaining; };
+                NumberDisplay.numberGetter actGet = delegate { return card.beatsRemaining+1; };
+                actionNum.GetComponent<NumberDisplay>().getter = actGet;
                 actionNum.transform.parent = numberHold.transform;
                 actionNum.transform.localScale = new Vector3(1, 1, 1);
                 actionNum.transform.localPosition = new Vector3(0, 0, -10f);
