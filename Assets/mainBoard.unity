@@ -488,12 +488,6 @@ MonoBehaviour:
   minScale: 1
   scaleBeatModifier: 6
   decay: 0.8
---- !u!114 &1000466213 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114288249399339412, guid: 20c9a95cb9d29574586d165b660be3ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 1092541293}
-  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
 --- !u!1 &1009218390 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1074038579484744, guid: 9838e313c2c4cc7498f62ed545d84bf7,
@@ -595,12 +589,6 @@ MonoBehaviour:
   minScale: 1
   scaleBeatModifier: 6
   decay: 0.5
---- !u!114 &1282782182 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114288249399339412, guid: 20c9a95cb9d29574586d165b660be3ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 1810557668}
-  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
 --- !u!1 &1340298745 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1884949890982292, guid: 9838e313c2c4cc7498f62ed545d84bf7,
@@ -621,12 +609,6 @@ MonoBehaviour:
   minScale: 1
   scaleBeatModifier: 6
   decay: 0.5
---- !u!114 &1367569465 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114288249399339412, guid: 20c9a95cb9d29574586d165b660be3ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 930359871}
-  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
 --- !u!1001 &1379708979
 Prefab:
   m_ObjectHideFlags: 0
@@ -1010,11 +992,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4124643874574730, guid: 88672866547575644872ae7bb9c9400c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1047,191 +1024,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114526789916742918, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: unitCard
-      value: 
-      objectReference: {fileID: 1465406664}
     - target: {fileID: 114826464017914198, guid: 88672866547575644872ae7bb9c9400c,
         type: 2}
       propertyPath: unitCard
       value: 
       objectReference: {fileID: 1835999204}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
+    - target: {fileID: 114526789916742918, guid: 88672866547575644872ae7bb9c9400c,
         type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: unitCard
       value: 
-      objectReference: {fileID: 1282782182}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: beat
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1000466213}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: beat
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1728820176}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: beat
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1367569465}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: beat
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[7].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[8].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[8].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[9].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[9].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[10].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[10].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[11].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[11].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[12].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114604083647017682, guid: 88672866547575644872ae7bb9c9400c,
-        type: 2}
-      propertyPath: beat.m_PersistentCalls.m_Calls.Array.data[12].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1465406664}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88672866547575644872ae7bb9c9400c, type: 2}
   m_IsPrefabParent: 0
@@ -1400,12 +1202,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 387accfa33644354fbd07cc141ee4926, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1728820176 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114288249399339412, guid: 20c9a95cb9d29574586d165b660be3ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 1490290556}
-  m_Script: {fileID: 11500000, guid: a1a3e398245e1cb4490eb83aabcd0343, type: 3}
 --- !u!1 &1756042032 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1512334051368822, guid: 9838e313c2c4cc7498f62ed545d84bf7,
