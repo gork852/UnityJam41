@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class targetActionLightning : targetAction {
-
+    public int damage = 5;
     float timeToDie;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class targetActionLightning : targetAction {
 	}
     override public void actOnTarget(Card target)
     {
-        target.applyDamage(5);
+        target.applyDamage(damage);
         timeToDie = Time.time + 1;
         //Destroy(this.gameObject);
     }

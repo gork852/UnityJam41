@@ -17,6 +17,9 @@ public class HealAbility : Ability {
     public override void action(Board b)
     {
         BoardPosition target = b.getBoardPosition(thisCard.row, thisCard.col + thisCard.dir);
-        target.unitCard.curHealth += 3;
+        if (target == null)
+            Debug.Break();
+        if(target!=null&&target.unitCard!=null)
+            target.unitCard.curHealth += 3;
     }
 }
