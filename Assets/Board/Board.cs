@@ -8,6 +8,7 @@ public class Board : MonoBehaviour {
     float beatGap = 1.0f;
     float lastTime;
     public GameObject NumberPrefab;
+    public GameObject keyIndPrefab;
     public UnityEvent Beat;
 
     public List<BoardPosition> boardPositions = new List<BoardPosition>();
@@ -126,8 +127,8 @@ public class Board : MonoBehaviour {
             card.state = Card.cardState.onboard;
             if(card.type == Card.cardType.creature)
             {
-                Vector3 spanwpoint = card.transform.position;
-                Debug.DrawLine(spanwpoint, new Vector3());
+                //Vector3 spanwpoint = card.transform.position;
+                //Debug.DrawLine(spanwpoint, new Vector3());
                 
                 GameObject numberHold = new GameObject();
                 numberHold.transform.parent = card.transform;
@@ -156,6 +157,12 @@ public class Board : MonoBehaviour {
                 actionNum.transform.parent = numberHold.transform;
                 actionNum.transform.localScale = new Vector3(1, 1, 1);
                 actionNum.transform.localPosition = new Vector3(0, 0, -10f);
+
+                GameObject keyPressIndicator = Instantiate(keyIndPrefab);
+                beatIndicator beatIndicatorComp = keyPressIndicator.GetComponent<beatIndicator>();
+                keyPressIndicator.transform.parent = numberHold.transform;
+                keyPressIndicator.transform.localScale = new Vector3(1, 1, 1);
+                keyPressIndicator.transform.localPosition = new Vector3(0, .4f, -10f);
 
                 card.timedPress = gameObject.AddComponent<TimedKeyPress>();
                 card.timedPress.initTimes(.1f, .2f, .3f);

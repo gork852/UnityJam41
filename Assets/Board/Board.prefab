@@ -3680,6 +3680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumberPrefab: {fileID: 1523605107523910, guid: c9ebfb307aaf83d4c9aa0a5719bd3b78,
     type: 2}
+  keyIndPrefab: {fileID: 1354810402203178, guid: 0ff8fdf42a4a09b4b9f102658356832c,
+    type: 2}
   Beat:
     m_PersistentCalls:
       m_Calls: []
