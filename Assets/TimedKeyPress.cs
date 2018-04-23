@@ -11,6 +11,7 @@ public class TimedKeyPress : MonoBehaviour {
     public float pressGracePoor;
 
     public beatIndicator indicator;
+    public float scaler;
 
     public bool isAI;
 
@@ -32,6 +33,11 @@ public class TimedKeyPress : MonoBehaviour {
         pressGracePoor = gracePoor;
     }
 
+    public void resetValues()
+    {
+
+    }
+
     public void setAI(bool val)
     {
         isAI = val;
@@ -49,9 +55,12 @@ public class TimedKeyPress : MonoBehaviour {
                 pressed = true;
                 timePressed = Time.time;
             }
+            if (scaler > 0)
+                scaler -= Time.deltaTime;
 
-
-
+            indicator.outerScale = scaler;
+            indicator.colorAndAlpha.r = scaler;
+            indicator.colorAndAlpha.g = 1-scaler - .2f;
         }
 
 	}
@@ -73,6 +82,8 @@ public class TimedKeyPress : MonoBehaviour {
 
         if (isAI)
             pressStatus = Status.Good;
+        else
+            indicator.outerScale = 0;
 
         //Debug.Log("Press Result recorded: " + pressStatus);
 

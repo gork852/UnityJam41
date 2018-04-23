@@ -161,7 +161,7 @@ public class Board : MonoBehaviour {
                 
 
                 card.timedPress = gameObject.AddComponent<TimedKeyPress>();
-                card.timedPress.initTimes(.1f, .2f, .3f);
+                card.timedPress.initTimes(.1f, .2f, .4f);
                 if (dir == -1)
                 {
                     GameObject keyPressIndicator = Instantiate(keyIndPrefab);
@@ -216,6 +216,7 @@ public class Board : MonoBehaviour {
             curCard.timedPress.setColumnKeyCode(curCard.col);
             curCard.timedPress.pressed = false;
             curCard.timedPress.expectedTime = 0;
+            curCard.timedPress.scaler = 1;
         }
     }
 
