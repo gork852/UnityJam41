@@ -22,7 +22,8 @@ public class beatIndicator : MonoBehaviour {
 	void Update () {
         if (dispChar != displayChar)
         {
-            tex.text = dispChar;
+            tex.text = displayChar;
+            
             dispChar = displayChar;
         }
         outImg.color = colorAndAlpha;
