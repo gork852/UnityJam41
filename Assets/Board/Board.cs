@@ -123,7 +123,12 @@ public class Board : MonoBehaviour {
                 hpNum.transform.parent = numberHold.transform;
                 hpNum.transform.localScale = new Vector3(1, 1, 1);
                 hpNum.transform.localPosition = new Vector3(.3f,-.4f,-10f);
-                
+
+                GameObject actionNum = Instantiate(NumberPrefab);
+                NumberDisplay.numberGetter actGet = delegate { return card.beatsRemaining; };
+                actionNum.transform.parent = numberHold.transform;
+                actionNum.transform.localScale = new Vector3(1, 1, 1);
+                actionNum.transform.localPosition = new Vector3(0, 0, -10f);
             }
         }
         else
