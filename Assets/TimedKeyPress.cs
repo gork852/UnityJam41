@@ -12,6 +12,8 @@ public class TimedKeyPress : MonoBehaviour {
 
     public beatIndicator indicator;
     public float scaler;
+    public float beatGap;
+    public int iters;
 
     public bool isAI;
 
@@ -56,11 +58,32 @@ public class TimedKeyPress : MonoBehaviour {
                 timePressed = Time.time;
             }
             if (scaler > 0)
-                scaler -= Time.deltaTime;
+                scaler -= Time.deltaTime/beatGap/iters;
 
             indicator.outerScale = scaler;
-            indicator.colorAndAlpha.r = scaler;
-            indicator.colorAndAlpha.g = 1-scaler - .2f;
+
+            float timeDiff = expectedTime - Time.time;
+
+            if (Mathf.Abs(timeDiff) < pressGracePerfect)
+            {
+                indicator.colorAndAlpha.r = 0;
+                indicator.colorAndAlpha.g = 1f;
+            }
+            else if (Mathf.Abs(timeDiff) < pressGraceGood)
+            {
+                indicator.colorAndAlpha.r = .3f;
+                indicator.colorAndAlpha.g = .7f;
+            }
+            else if (Mathf.Abs(timeDiff) < pressGracePoor)
+            {
+                indicator.colorAndAlpha.r = .5f;
+                indicator.colorAndAlpha.g = .5f;
+            }
+            else
+            {
+                indicator.colorAndAlpha.r = 1;
+                indicator.colorAndAlpha.g = 0;
+            }
         }
 
 	}

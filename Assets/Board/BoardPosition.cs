@@ -39,7 +39,13 @@ public class BoardPosition : MonoBehaviour {
     {
         if(card.type == Card.cardType.creature && unitCard == null)
         {
-            return true;
+            if (card.dir == -1 && row == 7)
+                return true;
+            else if (card.dir == 1 && row == 0)
+                return true;
+            else
+                return false;
+
         }
         /*else if(card.type == Card.cardType.targetCreature && unitCard != null)
         {

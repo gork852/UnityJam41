@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Board : MonoBehaviour {
 
-    float beatGap = 1.0f;
+    float beatGap = 1f;
     float lastTime;
     public GameObject NumberPrefab;
     public GameObject keyIndPrefab;
@@ -74,13 +74,14 @@ public class Board : MonoBehaviour {
             curCard = position.unitCard;
             if (curCard != null && curCard.timedPress != null && curCard.beatsRemaining == 0)
             {
-                curCard.timedPress.expectedTime = Time.time;
+                //curCard.timedPress.expectedTime = Time.time;
                 curCard.timedPress.active = false;
                 curCard.timedPress.compareTime();
+                Debug.Break();
             }
             else if(curCard != null && curCard.timedPress == null)
             {
-                curCard.timedPress = gameObject.AddComponent<TimedKeyPress>();
+                curCard.timedPress = curCard.gameObject.AddComponent<TimedKeyPress>();
                 curCard.timedPress.initTimes(.1f, .2f, .3f);
                 if (curCard.dir == -1)
                     curCard.timedPress.setAI(false);
@@ -101,9 +102,12 @@ public class Board : MonoBehaviour {
             if (curCard != null && curCard.beatsRemaining == 0)
             {
                 Ability[] abilities = curCard.GetComponents<Ability>();
-                foreach(Ability ability in abilities)
+                if (curCard.timedPress.pressStatus != TimedKeyPress.Status.Miss)
                 {
-                    ability.action(this);
+                    foreach (Ability ability in abilities)
+                    {
+                        ability.action(this);
+                    }
                 }
 
             }
@@ -160,7 +164,7 @@ public class Board : MonoBehaviour {
 
                 
 
-                card.timedPress = gameObject.AddComponent<TimedKeyPress>();
+                card.timedPress = card.gameObject.AddComponent<TimedKeyPress>();
                 card.timedPress.initTimes(.1f, .2f, .4f);
                 if (dir == -1)
                 {
@@ -174,6 +178,7 @@ public class Board : MonoBehaviour {
                     keyPressIndicator.transform.localPosition = new Vector3(0, .4f, -10f);
                     card.timedPress.setAI(false);
                     card.timedPress.indicator = beatIndicatorComp;
+                    card.timedPress.setColumnKeyCode(col);
                 }
                 else if (dir == 1)
                     card.timedPress.setAI(true);
@@ -210,14 +215,21 @@ public class Board : MonoBehaviour {
 
     public void resetCardTimer(Card curCard)
     {
-        if (curCard.beatsRemaining == 0 && curCard.state == Card.cardState.onboard)
+        if (curCard.beatsRemaining == curCard.beatSpeed && curCard.state == Card.cardState.onboard)
         {
-            curCard.timedPress.active = true;
-            curCard.timedPress.setColumnKeyCode(curCard.col);
             curCard.timedPress.pressed = false;
-            curCard.timedPress.expectedTime = 0;
+            curCard.timedPress.iters = curCard.beatSpeed;
+            curCard.timedPress.beatGap = beatGap;
+
+            curCard.timedPress.expectedTime = Time.time+beatGap*curCard.beatSpeed;
             curCard.timedPress.scaler = 1;
         }
+
+        if(curCard.beatsRemaining == curCard.beatSpeed && curCard.state == Card.cardState.onboard)
+        {
+            curCard.timedPress.active = true;
+        }
+
     }
 
     public void movePhase()
